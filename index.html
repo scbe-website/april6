@@ -480,11 +480,11 @@
       <!-- Logo: centered on mobile, left-fixed on desktop -->
       <div class="flex justify-center lg:justify-start lg:flex-shrink-0">
         <img src="images/logo.png" alt="SoCal Bradley Electric"
-          class="w-40 sm:w-48 lg:w-56 xl:w-64 drop-shadow-2xl"
+          class="parallax-logo w-56 sm:w-64 lg:w-80 xl:w-[420px] drop-shadow-2xl"
           onerror="this.style.display='none'">
       </div>
       <!-- Text content -->
-      <div class="max-w-xl lg:max-w-2xl">
+      <div class="max-w-lg lg:max-w-xl">
         <span class="inline-flex items-center gap-2 px-3 py-1 mb-5 rounded-full bg-primary-container/20 text-primary-container font-label text-xs font-semibold tracking-wider uppercase">
           <span class="w-1.5 h-1.5 rounded-full bg-primary-container flex-shrink-0"></span>
           CA Lic #1131979 · Licensed and Proven
@@ -1042,5 +1042,28 @@ function reset(prefix){
 buildPanel(RES,'res-grid','res');
 buildPanel(COM,'com-grid','com');
 </script>
+  <style>
+  .parallax-logo {
+    transition: transform 0.2s ease-out;
+    will-change: transform;
+  }
+
+  /* Mouse-based parallax */
+  body:hover .parallax-logo {
+    transform: translateY(calc(var(--parallax-y, 0px) * 0.3))
+               translateX(calc(var(--parallax-x, 0px) * 0.3));
+  }
+</style>
+
+<script>
+  // Track mouse movement for parallax
+  document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX - window.innerWidth / 2) / 20;
+    const y = (e.clientY - window.innerHeight / 2) / 20;
+    document.body.style.setProperty("--parallax-x", `${x}px`);
+    document.body.style.setProperty("--parallax-y", `${y}px`);
+  });
+</script>
+
 </body>
 </html>
