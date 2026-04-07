@@ -33,7 +33,7 @@
   .panel-shell {
     border-radius: 6px;
     overflow: hidden;
-    background: #5a6070;
+    background: #7a8494;
     box-shadow:
       0 40px 80px rgba(0,0,0,.5),
       0 0 0 1px rgba(255,255,255,.08),
@@ -105,7 +105,7 @@
 
   /* Breaker body — true 2-column load center */
   .breaker-grid {
-    background: linear-gradient(180deg,#4b5563 0%,#374151 100%);
+    background: linear-gradient(180deg,#6b7585 0%,#55636f 100%);
     padding: 8px 10px 10px;
     display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
   }
@@ -329,7 +329,7 @@
 <nav class="fixed top-0 w-full z-50 glass-nav">
   <div class="flex justify-between items-center px-8 py-3 max-w-7xl mx-auto">
     <a href="#home" class="flex items-center gap-3">
-      <img src="images/logo.png" alt="SoCal Bradley Electric" class="h-9 w-auto" onerror="this.style.display='none'">
+      <img src="images/logo.png" alt="SoCal Bradley Electric" class="h-12 w-auto" onerror="this.style.display='none'">
       <span class="font-headline font-bold text-lg text-on-surface tracking-tight hidden sm:block">
         <span class="text-primary">SoCal</span> Bradley Electric
       </span>
@@ -480,9 +480,12 @@
         <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
         CA Lic #1131979 · Licensed and Proven
       </span>
-      <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.02] mb-6">
-        Specialized <em class="not-italic text-primary-container">Electrical</em> Solutions for Biotech and Medical Environments.
-      </h1>
+      <div class="flex items-start gap-6 mb-6">
+        <img src="images/logo.png" alt="SoCal Bradley Electric" class="w-36 md:w-48 lg:w-56 flex-shrink-0 drop-shadow-2xl" onerror="this.style.display='none'">
+        <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.02]">
+          Specialized <em class="not-italic text-primary-container">Electrical</em> Solutions for Biotech and Medical Environments.
+        </h1>
+      </div><!-- end flex logo+h1 -->
       <p class="text-slate-300 text-lg leading-relaxed mb-10 max-w-xl">
         12 years of excellence in high-stakes commercial electrical work across Southern California. Precision-engineered for specialized industries.
       </p>
@@ -527,7 +530,7 @@
         <h2 class="font-headline text-4xl md:text-5xl font-bold leading-tight">Precision Solutions</h2>
         <p class="text-secondary mt-3 max-w-sm leading-relaxed">Specialized electrical engineering tailored for elite residential living and high-performance commercial environments.</p>
       </div>
-      <a href="#panels" class="self-start lg:self-end inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container font-label font-bold text-sm hover:opacity-90 transition-opacity whitespace-nowrap">All Services →</a>
+
     </div>
 
     <p class="font-headline font-semibold text-lg mb-5 text-on-surface">Residential Mastery</p>
@@ -574,8 +577,8 @@
       <div class="relative group overflow-hidden rounded-xl bg-surface-container-highest aspect-[4/3]">
         <img class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" src="images/com-09.jpg" alt="New Construction" onerror="this.style.display='none'">
         <div class="absolute inset-0 p-7 flex flex-col justify-end">
-          <h4 class="font-headline text-xl font-bold text-on-surface mb-2">New Construction</h4>
-          <p class="text-secondary text-sm">End-to-end electrical design and implementation for modern architecture.</p>
+          <h4 class="font-headline text-xl font-bold text-white mb-2">New Construction</h4>
+          <p class="text-white text-sm">End-to-end electrical design and implementation for modern architecture.</p>
           <a href="#panels" class="mt-4 inline-flex items-center text-primary font-bold text-sm gap-1 hover:gap-2 transition-all">View Services →</a>
         </div>
       </div>
@@ -806,66 +809,90 @@
 </section>
 
 <!-- FAQ -->
-<section class="py-24 px-8 bg-surface" id="faq">
+<section class="py-24 px-8 bg-on-background" id="faq">
   <div class="max-w-3xl mx-auto text-center mb-14">
-    <h2 class="font-headline text-4xl font-bold mb-4">Common Inquiries</h2>
-    <p class="text-secondary">Everything you need to know about our electrical company and services across Southern California.</p>
+    <h2 class="font-headline text-4xl font-bold mb-4 text-white">Common Inquiries</h2>
+    <p class="text-slate-400">Everything you need to know about our electrical company and services across Southern California.</p>
   </div>
   <div class="max-w-3xl mx-auto space-y-4">
-    <details class="group bg-surface-container-lowest rounded-xl ambient-shadow"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Do you provide emergency 24/7 support?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Yes! Electrical emergencies don't wait for business hours. We're on standby 24/7 for critical failures and safety hazards across all of Southern California.</div></details>
-    <details class="group bg-surface-container-lowest rounded-xl ambient-shadow"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">How do I know if I need a panel upgrade?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Signs include frequently tripping breakers, flickering lights, a 100A or smaller panel, or plans to add an EV charger or major appliances. We assess your current panel and give you a straight answer with no upselling.</div></details>
-    <details class="group bg-surface-container-lowest rounded-xl ambient-shadow"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Do you pull permits, and why does that matter?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Yes, always. Permitted work is inspected for code compliance, protecting your safety, insurability, and resale value. We handle all permits and coordinate inspections.</div></details>
-    <details class="group bg-surface-container-lowest rounded-xl ambient-shadow"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Do you work on biotech and laboratory electrical systems?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Yes, it is one of our specialties! 12 years of experience with biotech labs, medical buildings, and research facilities. We handle dedicated instrument circuits, isolated power panels, emergency systems, and cleanroom wiring.</div></details>
-    <details class="group bg-surface-container-lowest rounded-xl ambient-shadow"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">What areas do you serve?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Based in San Diego, serving all of San Diego County including East County and North County, Orange County, Los Angeles, San Bernardino, and Riverside. For large commercial projects we accommodate throughout SoCal.</div></details>
-    <details class="group bg-surface-container-lowest rounded-xl ambient-shadow"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Are your technicians licensed and insured?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Absolutely. SoCal Bradley Electric holds CA Contractor License #1131979, fully bonded and insured for residential and commercial work. Verify at cslb.ca.gov.</div></details>
-    <details class="group bg-surface-container-lowest rounded-xl ambient-shadow"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Are you the same as other Bradley Electric companies?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">No. SoCal Bradley Electric is an independent, locally owned electrical company based in San Diego, CA. No affiliation with Bradley Electric companies in other states. CA License #1131979, verify at cslb.ca.gov.</div></details>
+    <details class="group bg-surface-container-high rounded-xl border border-white/10 shadow-lg"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Do you provide emergency 24/7 support?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Yes! Electrical emergencies don't wait for business hours. We're on standby 24/7 for critical failures and safety hazards across all of Southern California.</div></details>
+    <details class="group bg-surface-container-high rounded-xl border border-white/10 shadow-lg"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">How do I know if I need a panel upgrade?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Signs include frequently tripping breakers, flickering lights, a 100A or smaller panel, or plans to add an EV charger or major appliances. We assess your current panel and give you a straight answer with no upselling.</div></details>
+    <details class="group bg-surface-container-high rounded-xl border border-white/10 shadow-lg"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Do you pull permits, and why does that matter?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Yes, always. Permitted work is inspected for code compliance, protecting your safety, insurability, and resale value. We handle all permits and coordinate inspections.</div></details>
+    <details class="group bg-surface-container-high rounded-xl border border-white/10 shadow-lg"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Do you work on biotech and laboratory electrical systems?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Yes, it is one of our specialties! 12 years of experience with biotech labs, medical buildings, and research facilities. We handle dedicated instrument circuits, isolated power panels, emergency systems, and cleanroom wiring.</div></details>
+    <details class="group bg-surface-container-high rounded-xl border border-white/10 shadow-lg"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">What areas do you serve?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Based in San Diego, serving all of San Diego County including East County and North County, Orange County, Los Angeles, San Bernardino, and Riverside. For large commercial projects we accommodate throughout SoCal.</div></details>
+    <details class="group bg-surface-container-high rounded-xl border border-white/10 shadow-lg"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Are your technicians licensed and insured?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">Absolutely. SoCal Bradley Electric holds CA Contractor License #1131979, fully bonded and insured for residential and commercial work. Verify at cslb.ca.gov.</div></details>
+    <details class="group bg-surface-container-high rounded-xl border border-white/10 shadow-lg"><summary class="flex justify-between items-center p-6 cursor-pointer list-none"><span class="font-headline font-bold text-lg">Are you the same as other Bradley Electric companies?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform text-primary">expand_more</span></summary><div class="px-6 pb-6 text-secondary leading-relaxed border-t border-outline-variant/10 pt-4">No. SoCal Bradley Electric is an independent, locally owned electrical company based in San Diego, CA. No affiliation with Bradley Electric companies in other states. CA License #1131979, verify at cslb.ca.gov.</div></details>
   </div>
 </section>
 
 <!-- CONTACT -->
-  <section class="contact" id="contact" aria-labelledby="contact-heading">
-    <div class="container">
-      <div class="contact-inner">
-        <div>
-          <span class="section-label">Get In Touch</span>
-          <h2 class="section-title" id="contact-heading">Request a <span>Quote</span></h2>
-          <p class="section-sub" style="margin-bottom:32px">Call, text, or fill out the form — we'll get back to you fast. Serving San Diego, Orange County, Los Angeles, Riverside, and San Bernardino.</p>
-          <div class="contact-method">
-            <div class="cm-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div>
-            <div><div class="cm-label">Phone &amp; Text</div><div class="cm-value"><a href="tel:6193336470">619-333-6470</a></div></div>
-          </div>
-          <div class="contact-method">
-            <div class="cm-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-            <div><div class="cm-label">Instagram</div><div class="cm-value"><a href="https://instagram.com/socalbradleyelectric" target="_blank" rel="noopener">@socalbradleyelectric</a></div></div>
-          </div>
-          <div class="contact-method">
-            <div class="cm-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div><div class="cm-label">Service Area</div><div class="cm-value" style="color:var(--text-light)">San Diego County, CA</div></div>
-          </div>
-          <div class="contact-method">
-            <div class="cm-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div><div class="cm-label">License</div><div class="cm-value" style="color:var(--text-light)">CA #1131979 · Bonded &amp; Insured</div></div>
-          </div>
-          <div class="contact-method">
-            <div class="cm-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+<section class="bg-on-background py-24 px-8" id="contact" aria-labelledby="contact-heading">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left: contact info -->
+      <div>
+        <p class="font-label text-xs text-primary-container font-bold tracking-widest uppercase mb-4">Get In Touch</p>
+        <h2 class="font-headline text-4xl md:text-5xl font-bold text-white leading-tight mb-4" id="contact-heading">Request a <span class="text-primary-container">Quote</span></h2>
+        <p class="text-slate-400 leading-relaxed mb-10">Call, text, or fill out the form — we'll get back to you fast. Serving San Diego, Orange County, Los Angeles, Riverside, and San Bernardino.</p>
+
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+            </div>
             <div>
-              <div class="cm-label">Hours</div>
-              <div class="cm-value" style="color:var(--text-light);font-size:13px;font-weight:600">
-                Mon–Fri 7am–6pm · Sat 8am–3pm<br>
-                <span style="color:var(--gold)">24/7 Emergency Service Available</span>
-              </div>
+              <div class="font-label text-xs font-bold tracking-widest uppercase text-slate-500 mb-1">Phone &amp; Text</div>
+              <a href="tel:6193336470" class="text-white font-headline font-bold text-lg hover:text-primary-container transition-colors">619-333-6470</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div>
+              <div class="font-label text-xs font-bold tracking-widest uppercase text-slate-500 mb-1">Instagram</div>
+              <a href="https://instagram.com/socalbradleyelectric" target="_blank" rel="noopener" class="text-white font-semibold hover:text-primary-container transition-colors">@socalbradleyelectric</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="font-label text-xs font-bold tracking-widest uppercase text-slate-500 mb-1">Service Area</div>
+              <div class="text-slate-300 font-semibold">San Diego County, CA</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="font-label text-xs font-bold tracking-widest uppercase text-slate-500 mb-1">License</div>
+              <div class="text-slate-300 font-semibold">CA #1131979 · Bonded &amp; Insured</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="font-label text-xs font-bold tracking-widest uppercase text-slate-500 mb-1">Hours</div>
+              <div class="text-slate-300 font-semibold text-sm">Mon–Fri 7am–6pm · Sat 8am–3pm<br><span class="text-primary-container">24/7 Emergency Service Available</span></div>
             </div>
           </div>
         </div>
-        <div>
+      </div>
 
-    <!-- Bottom half: dark form -->
-    <div class="bg-on-background py-16 px-8">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-10">
-          <h3 class="font-headline text-2xl font-bold text-white mb-2">Send Us a Message</h3>
-          <p class="text-slate-400 text-sm">Fill out the form and we will get back to you fast.</p>
-        </div>
+      <!-- Right: form -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+        <h3 class="font-headline text-2xl font-bold text-white mb-2">Send Us a Message</h3>
+        <p class="text-slate-400 text-sm mb-8">Fill out the form and we will get back to you fast.</p>
         <form name="contact" method="POST" data-netlify="true" action="#contact" class="space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
@@ -905,8 +932,8 @@
           </button>
         </form>
       </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
@@ -915,7 +942,7 @@
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
       <div class="md:col-span-1">
-        <img src="images/logo.png" alt="SoCal Bradley Electric" class="h-10 w-auto mb-3" onerror="this.style.display='none'">
+        <img src="images/logo.png" alt="SoCal Bradley Electric" class="h-20 w-auto mb-3" onerror="this.style.display='none'">
         <div class="font-headline font-bold text-on-surface mb-2"><span class="text-primary">SoCal</span> Bradley Electric</div>
         <p class="text-secondary text-sm leading-relaxed max-w-xs">Expert commercial electrical solutions for high-complexity environments across Southern California.</p>
       </div>
