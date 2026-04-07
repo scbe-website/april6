@@ -14,22 +14,157 @@
   tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#835500","on-primary":"#ffffff","primary-container":"#f5a623","on-primary-container":"#644000","secondary":"#585e6e","on-secondary":"#ffffff","secondary-container":"#dce2f5","on-secondary-container":"#5e6474","surface":"#f9f9ff","on-surface":"#151c29","surface-variant":"#dce2f5","on-surface-variant":"#524534","surface-container-lowest":"#ffffff","surface-container-low":"#f1f3ff","surface-container":"#e8eeff","surface-container-high":"#e2e8fb","surface-container-highest":"#dce2f5","surface-dim":"#d3daec","outline":"#857462","outline-variant":"#d7c3ae","on-background":"#151c29","background":"#f9f9ff","inverse-surface":"#2a303f","inverse-on-surface":"#ecf0ff","error":"#ba1a1a"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem","2xl":"1rem",full:"9999px"},fontFamily:{headline:["Inter","sans-serif"],body:["Inter","sans-serif"],label:["Inter","sans-serif"]}}}};
 </script>
 <style>
-  .glass-nav{background:rgba(255,255,255,.82);backdrop-filter:blur(20px)}
+  .glass-nav{background:rgba(10,14,24,.88);backdrop-filter:blur(20px)}
   .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
   .ambient-shadow{box-shadow:0 32px 64px -12px rgba(21,28,41,.08)}
   .primary-gradient{background:linear-gradient(135deg,#835500 0%,#f5a623 100%)}
 
-  /* ── ELECTRICAL SCHEMA BACKGROUND ── */
-  .schema-bg {
-    position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  /* ── HERO ── */
+  .hero-photo {
+    position: absolute; inset: 0; z-index: 0;
   }
-  .schema-bg svg {
-    width: 100%; height: 100%; opacity: 0.07;
+  .hero-photo img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(105deg, rgba(10,14,24,0.88) 0%, rgba(10,14,24,0.70) 50%, rgba(10,14,24,0.30) 100%);
+  }
+
+  /* ── LOGO FRAME (right of "What We Do") ── */
+  .logo-frame {
+    position: relative;
+    background: #0d1520;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 40px 80px rgba(0,0,0,.45),
+      0 0 0 1px rgba(245,166,35,.18),
+      inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .logo-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(131,85,0,.18) 0%, rgba(245,166,35,.06) 100%);
+    z-index: 0;
+  }
+  .logo-frame-inner {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 56px 48px;
+  }
+  .logo-frame img {
+    max-width: 260px; width: 100%;
+    filter: drop-shadow(0 4px 32px rgba(245,166,35,.35));
+  }
+  .logo-frame-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(180deg,#111827,#0a0e18);
+    padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(245,166,35,.2);
+    z-index: 1;
+  }
+  .logo-frame-bar span {
+    font-family: 'Inter',sans-serif; font-size: .62rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(245,166,35,.7);
+  }
+  .logo-frame-badge {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Inter',sans-serif; font-size: .58rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: #4b5563;
+  }
+  .logo-frame-badge::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #f5a623;
+    box-shadow: 0 0 6px rgba(245,166,35,.6);
+  }
+
+  /* ── PHOTO CARD GRID (service sections) ── */
+  .photo-card-grid {
+    display: grid;
+    gap: 3px;
+  }
+  .photo-card-grid.res-layout {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+  }
+  .photo-card-grid.com-layout {
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-rows: 240px 240px;
+  }
+  .photo-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: #0a1020;
+  }
+  .photo-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .5s ease, filter .3s ease;
+    filter: brightness(.75) saturate(.9);
+  }
+  .photo-card:hover img {
+    transform: scale(1.06); filter: brightness(.9) saturate(1.1);
+  }
+  .photo-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(10,14,24,.85) 0%, rgba(10,14,24,.2) 60%, transparent 100%);
+    transition: background .3s;
+  }
+  .photo-card:hover .photo-card-overlay {
+    background: linear-gradient(0deg, rgba(131,85,0,.7) 0%, rgba(10,14,24,.3) 70%, transparent 100%);
+  }
+  .photo-card-content {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 22px;
+  }
+  .photo-card-tag {
+    display: inline-block;
+    font-family: 'Inter',sans-serif; font-size: .52rem; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: #f5a623; background: rgba(245,166,35,.12);
+    border: 1px solid rgba(245,166,35,.3);
+    padding: 2px 8px; border-radius: 2px; margin-bottom: 6px;
+  }
+  .photo-card-title {
+    font-family: 'Inter',sans-serif; font-size: 1rem; font-weight: 800;
+    color: #fff; line-height: 1.2; margin-bottom: 4px;
+  }
+  .photo-card.large .photo-card-title { font-size: 1.35rem; }
+  .photo-card-desc {
+    font-family: 'Inter',sans-serif; font-size: .75rem; color: rgba(255,255,255,.65);
+    line-height: 1.5; max-height: 0; overflow: hidden;
+    transition: max-height .3s ease, opacity .3s;
+    opacity: 0;
+  }
+  .photo-card:hover .photo-card-desc { max-height: 80px; opacity: 1; }
+
+  .photo-card.span-2-col { grid-column: span 1; }
+  @media(min-width:768px){
+    .photo-card.large-col { grid-column: span 1; }
+    .res-layout .photo-card:first-child { grid-column: 1; grid-row: 1 / 3; }
+    .com-layout .photo-card:last-child  { grid-column: 3; grid-row: 1 / 3; }
+  }
+
+  /* ── SECTION HERO BANNER ── */
+  .section-hero {
+    position: relative; overflow: hidden;
+    height: 340px; border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .section-hero img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(.55) saturate(.85);
+  }
+  .section-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, rgba(10,14,24,.82) 0%, rgba(10,14,24,.4) 60%, transparent 100%);
+  }
+  .section-hero-content {
+    position: absolute; bottom: 0; left: 0; padding: 36px 40px;
   }
 
   /* ── REALISTIC BREAKER PANEL ── */
-
-  /* Outer enclosure — brushed steel effect */
   .panel-shell {
     border-radius: 6px;
     overflow: hidden;
@@ -40,8 +175,6 @@
       inset 0 2px 0 rgba(255,255,255,.18),
       inset 0 -2px 0 rgba(0,0,0,.3);
   }
-
-  /* Manufacturer label bar */
   .panel-mfr {
     background: linear-gradient(180deg,#1a2030 0%,#111827 100%);
     padding: 8px 18px;
@@ -53,15 +186,11 @@
     font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: #f5a623;
   }
   .panel-meta { font-family: 'Inter',sans-serif; font-size: .62rem; color: #8899aa; }
-
-  /* Door frame / bezel */
   .panel-bezel {
     background: linear-gradient(180deg,#4a5568 0%,#3a4555 100%);
     padding: 6px 12px;
     border-bottom: 2px solid #2d3748;
   }
-
-  /* Main breaker bar */
   .panel-main {
     background: linear-gradient(180deg,#374151 0%,#2d3748 100%);
     padding: 10px 16px;
@@ -89,8 +218,6 @@
     font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #d1d5db;
   }
   .panel-main-info em { font-style: normal; color: #6b7280; font-weight: 400; }
-
-  /* Bus bar / rail area */
   .panel-rail {
     background: linear-gradient(180deg,#64748b 0%,#4b5563 100%);
     padding: 2px 12px 0;
@@ -102,14 +229,11 @@
     border-radius: 0 0 2px 2px;
     box-shadow: 0 2px 4px rgba(0,0,0,.3);
   }
-
-  /* Breaker body — true 2-column load center */
   .breaker-grid {
     background: linear-gradient(180deg,#6b7585 0%,#55636f 100%);
     padding: 8px 10px 10px;
     display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
   }
-
   .bk {
     display: grid; grid-template-columns: 32px 1fr;
     cursor: pointer; border-radius: 2px; overflow: hidden;
@@ -119,8 +243,6 @@
   .bk:hover { border-color: rgba(245,166,35,.55); }
   .bk.on   { border-color: #f5a623; }
   .bk.dbl  { grid-column: 1/-1; }
-
-  /* Left column: screw terminals + amp + toggle */
   .bk-l {
     background: linear-gradient(180deg,#374151 0%,#2d3748 100%);
     display: flex; flex-direction: column; align-items: center;
@@ -128,8 +250,6 @@
     border-right: 1px solid #1f2937;
     position: relative;
   }
-
-  /* Screw head at top of breaker slot */
   .bk-screw {
     width: 8px; height: 8px; border-radius: 50%;
     background: radial-gradient(circle at 35% 35%, #9ca3af, #374151);
@@ -144,8 +264,6 @@
                 linear-gradient(-45deg, transparent 40%, rgba(255,255,255,.1) 50%, transparent 60%);
     border-radius: 50%;
   }
-
-  /* Toggle switch paddle */
   .bk-tog {
     width: 11px; height: 20px;
     background: linear-gradient(180deg,#1f2937 0%,#111827 100%);
@@ -155,7 +273,6 @@
     box-shadow: 0 2px 6px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08);
     transition: background .15s; flex-shrink: 0;
   }
-  /* Paddle */
   .bk-tog::before {
     content: '';
     position: absolute; left: 1.5px; right: 1.5px; height: 8px;
@@ -173,14 +290,11 @@
     background: linear-gradient(180deg,#f5a623 0%,#c98b1a 100%);
     box-shadow: 0 0 6px rgba(245,166,35,.8), 0 1px 2px rgba(0,0,0,.4);
   }
-
   .bk-amp {
     font-family: 'Inter',sans-serif; font-size: .52rem; font-weight: 900;
     color: #9ca3af; letter-spacing: .04em; text-align: center;
   }
   .bk.on .bk-amp { color: #f5a623; }
-
-  /* Breaker right content */
   .bk-r {
     background: linear-gradient(180deg,#2a3444 0%,#1e2838 100%);
     padding: 6px 9px; display: flex; flex-direction: column;
@@ -193,7 +307,7 @@
     letter-spacing: .07em; margin-bottom: 1px;
   }
   .bk-name {
-    font-family: 'Space Grotesk',sans-serif; font-size: .76rem;
+    font-family: 'Inter',sans-serif; font-size: .76rem;
     font-weight: 700; color: #cbd5e1; line-height: 1.2; margin-bottom: 2px;
   }
   .bk.on .bk-name { color: #f8fafc; }
@@ -206,8 +320,6 @@
     background: #1f2937; color: #6b7280; margin-top: 3px;
     border: 1px solid #374151;
   }
-
-  /* Bottom screw rail */
   .panel-screw-rail {
     background: linear-gradient(180deg,#374151 0%,#2d3748 100%);
     padding: 4px 10px;
@@ -215,7 +327,7 @@
     border-top: 1px solid #1f2937;
   }
   .panel-screw-row { display: flex; gap: 14px; }
-  .ps { /* individual screw */
+  .ps {
     width: 9px; height: 9px; border-radius: 50%;
     background: radial-gradient(circle at 35% 35%, #9ca3af, #374151);
     border: 1px solid #1a202c;
@@ -229,8 +341,6 @@
                 linear-gradient(-45deg, transparent 42%, rgba(255,255,255,.15) 50%, transparent 58%);
     border-radius: 50%;
   }
-
-  /* Detail readout */
   .panel-detail {
     background: #0d1520; border-top: 3px solid #111827;
     display: grid; grid-template-columns: 200px 1fr; overflow: hidden; min-height: 170px;
@@ -269,8 +379,6 @@
     padding: 2px 7px; border: 1px solid rgba(245,166,35,.25); border-radius: 3px;
     background: rgba(245,166,35,.05);
   }
-
-  /* Panel footer / nameplate */
   .panel-nameplate {
     background: linear-gradient(180deg,#111827 0%,#0d1420 100%);
     padding: 7px 16px; display: flex; justify-content: space-between; align-items: center;
@@ -281,17 +389,6 @@
     letter-spacing: .1em; text-transform: uppercase; color: #374151;
   }
   .panel-nameplate .np-ph { color: #f5a623; }
-
-  /* Contact CTA section */
-  .contact-cta-bg {
-    background: #f5a623;
-    position: relative; overflow: hidden;
-  }
-  .contact-cta-bg::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, #835500 0%, #f5a623 60%, #ffcc66 100%);
-  }
 
   /* Testimonial card */
   .tcard {
@@ -305,191 +402,82 @@
     width: 40px; height: 40px; border-radius: 50%;
     background: linear-gradient(135deg,#835500,#f5a623);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Grotesk',sans-serif; font-weight: 700;
+    font-family: 'Inter',sans-serif; font-weight: 700;
     font-size: .85rem; color: #fff; flex-shrink: 0;
   }
-  .tcard-name { font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: .85rem; color: #151c29; }
+  .tcard-name { font-family: 'Inter',sans-serif; font-weight: 700; font-size: .85rem; color: #151c29; }
   .tcard-role { font-family: 'Inter',sans-serif; font-size: .75rem; color: #6b7280; }
 
-  /* Plug SVG in contact */
-  .plug-line { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawLine 1.5s ease forwards; }
-  @keyframes drawLine { to { stroke-dashoffset: 0; } }
-
-  @media(max-width:640px){
+  @media(max-width:767px){
     .breaker-grid{grid-template-columns:1fr}
     .bk.dbl{grid-column:1}
     .panel-detail{grid-template-columns:1fr}
     .pd-img{width:100%;height:160px;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+    .photo-card-grid.res-layout,
+    .photo-card-grid.com-layout {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .res-layout .photo-card:first-child,
+    .com-layout .photo-card:last-child {
+      grid-column: 1 / -1;
+    }
+    .section-hero { height: 220px; }
   }
 </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
 
-<!-- NAVBAR -->
-<nav class="fixed top-0 w-full z-50 glass-nav border-b border-black/5">
-  <div class="flex justify-between items-center px-5 md:px-8 py-2 max-w-7xl mx-auto">
-    <a href="#home" class="flex items-center gap-2.5 flex-shrink-0">
-      <img src="images/logo.png" alt="SoCal Bradley Electric" class="h-10 w-auto" onerror="this.style.display='none'">
+<!-- NAVBAR (no logo, text only) -->
+<nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/5">
+  <div class="flex justify-between items-center px-5 md:px-8 py-3 max-w-7xl mx-auto">
+    <a href="#home" class="flex items-center gap-2 flex-shrink-0">
+      <span class="font-black text-white tracking-tight" style="font-size:1rem; letter-spacing:-0.02em; font-family:Inter,sans-serif;">SoCal <span class="text-primary-container">Bradley</span> Electric</span>
     </a>
     <div class="hidden md:flex items-center gap-7">
-      <a class="text-on-surface font-medium hover:text-primary transition-colors duration-200 font-label text-sm tracking-wide" href="#services">Services</a>
-      <a class="text-secondary hover:text-on-surface transition-colors duration-200 font-label text-sm tracking-wide" href="#about">About</a>
-      <a class="text-secondary hover:text-on-surface transition-colors duration-200 font-label text-sm tracking-wide" href="#why">Why Us</a>
-      <a class="text-secondary hover:text-on-surface transition-colors duration-200 font-label text-sm tracking-wide" href="#faq">FAQ</a>
+      <a class="text-white/80 font-medium hover:text-primary-container transition-colors duration-200 font-label text-sm tracking-wide" href="#services">Services</a>
+      <a class="text-white/60 hover:text-white/90 transition-colors duration-200 font-label text-sm tracking-wide" href="#about">About</a>
+      <a class="text-white/60 hover:text-white/90 transition-colors duration-200 font-label text-sm tracking-wide" href="#why">Why Us</a>
+      <a class="text-white/60 hover:text-white/90 transition-colors duration-200 font-label text-sm tracking-wide" href="#faq">FAQ</a>
     </div>
     <div class="flex items-center gap-3">
-      <a class="hidden lg:flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-primary transition-colors font-label" href="tel:6193336470">
+      <a class="hidden lg:flex items-center gap-1.5 text-sm font-medium text-white/60 hover:text-primary-container transition-colors font-label" href="tel:6193336470">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.21h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.81a16 16 0 006 6l.92-.92a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         619-333-6470
       </a>
       <a href="#contact" class="primary-gradient text-white px-4 py-2 rounded-md font-label font-semibold text-sm hover:opacity-90 active:scale-95 transition-all duration-100 whitespace-nowrap">Request Quote</a>
-      <button class="md:hidden p-1.5 rounded-md hover:bg-black/5 transition-colors" id="hamBtn" aria-label="Menu">
-        <svg class="w-5 h-5 text-on-surface" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <button class="md:hidden p-1.5 rounded-md hover:bg-white/10 transition-colors" id="hamBtn" aria-label="Menu">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </div>
-  <div id="mobMenu" class="hidden md:hidden bg-white border-t border-black/5 px-5 pb-5 pt-3 flex-col gap-1 shadow-lg">
-    <a class="text-on-surface font-label font-medium text-sm py-2.5 block border-b border-black/5" href="#services">Services</a>
-    <a class="text-secondary font-label text-sm py-2.5 block border-b border-black/5" href="#about">About</a>
-    <a class="text-secondary font-label text-sm py-2.5 block border-b border-black/5" href="#why">Why Us</a>
-    <a class="text-secondary font-label text-sm py-2.5 block border-b border-black/5" href="#faq">FAQ</a>
-    <a class="text-primary font-label font-semibold text-sm py-2.5 block" href="tel:6193336470">619-333-6470</a>
+  <div id="mobMenu" class="hidden md:hidden bg-black/90 border-t border-white/10 px-5 pb-5 pt-3 flex-col gap-1 shadow-lg">
+    <a class="text-white font-label font-medium text-sm py-2.5 block border-b border-white/10" href="#services">Services</a>
+    <a class="text-white/70 font-label text-sm py-2.5 block border-b border-white/10" href="#about">About</a>
+    <a class="text-white/70 font-label text-sm py-2.5 block border-b border-white/10" href="#why">Why Us</a>
+    <a class="text-white/70 font-label text-sm py-2.5 block border-b border-white/10" href="#faq">FAQ</a>
+    <a class="text-primary-container font-label font-semibold text-sm py-2.5 block" href="tel:6193336470">619-333-6470</a>
   </div>
 </nav>
 
-<!-- ══ HERO with electrical schema background ══ -->
-<section class="relative min-h-screen flex items-center overflow-hidden bg-on-background" id="home">
+<!-- ══ HERO — full photo, no logo ══ -->
+<section class="relative min-h-screen flex items-center overflow-hidden" id="home">
 
-  <!-- Electrical schematic SVG pattern -->
-  <div class="schema-bg">
-    <svg viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#f5a623" stroke-width="0.4"/>
-        </pattern>
-      </defs>
-      <!-- Grid -->
-      <rect width="1400" height="800" fill="url(#grid)"/>
-      <!-- Circuit traces - horizontal buses -->
-      <line x1="0" y1="120" x2="1400" y2="120" stroke="#f5a623" stroke-width="1.5"/>
-      <line x1="0" y1="360" x2="1400" y2="360" stroke="#f5a623" stroke-width="1.5"/>
-      <line x1="0" y1="600" x2="1400" y2="600" stroke="#f5a623" stroke-width="1.5"/>
-      <!-- Vertical drops -->
-      <line x1="120" y1="120" x2="120" y2="200" stroke="#f5a623" stroke-width="1"/>
-      <line x1="240" y1="120" x2="240" y2="220" stroke="#f5a623" stroke-width="1"/>
-      <line x1="360" y1="120" x2="360" y2="180" stroke="#f5a623" stroke-width="1"/>
-      <line x1="480" y1="120" x2="480" y2="240" stroke="#f5a623" stroke-width="1"/>
-      <line x1="600" y1="120" x2="600" y2="200" stroke="#f5a623" stroke-width="1"/>
-      <line x1="720" y1="120" x2="720" y2="180" stroke="#f5a623" stroke-width="1"/>
-      <line x1="840" y1="120" x2="840" y2="220" stroke="#f5a623" stroke-width="1"/>
-      <line x1="960" y1="120" x2="960" y2="200" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1080" y1="120" x2="1080" y2="240" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1200" y1="120" x2="1200" y2="180" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1320" y1="120" x2="1320" y2="200" stroke="#f5a623" stroke-width="1"/>
-      <!-- Mid row drops -->
-      <line x1="60" y1="360" x2="60" y2="440" stroke="#f5a623" stroke-width="1"/>
-      <line x1="180" y1="360" x2="180" y2="420" stroke="#f5a623" stroke-width="1"/>
-      <line x1="300" y1="360" x2="300" y2="460" stroke="#f5a623" stroke-width="1"/>
-      <line x1="420" y1="360" x2="420" y2="430" stroke="#f5a623" stroke-width="1"/>
-      <line x1="540" y1="360" x2="540" y2="450" stroke="#f5a623" stroke-width="1"/>
-      <line x1="660" y1="360" x2="660" y2="420" stroke="#f5a623" stroke-width="1"/>
-      <line x1="780" y1="360" x2="780" y2="440" stroke="#f5a623" stroke-width="1"/>
-      <line x1="900" y1="360" x2="900" y2="420" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1020" y1="360" x2="1020" y2="450" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1140" y1="360" x2="1140" y2="430" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1260" y1="360" x2="1260" y2="420" stroke="#f5a623" stroke-width="1"/>
-      <!-- Resistor symbols -->
-      <rect x="110" y="195" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <rect x="230" y="215" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <rect x="350" y="175" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <rect x="470" y="235" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <rect x="590" y="195" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <rect x="710" y="175" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <rect x="830" y="215" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <rect x="950" y="195" width="20" height="10" fill="none" stroke="#f5a623" stroke-width="1" rx="1"/>
-      <!-- Capacitor symbols -->
-      <line x1="60" y1="437" x2="80" y2="437" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="60" y1="443" x2="80" y2="443" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="50" y1="440" x2="60" y2="440" stroke="#f5a623" stroke-width="1"/>
-      <line x1="80" y1="440" x2="90" y2="440" stroke="#f5a623" stroke-width="1"/>
-      <line x1="300" y1="457" x2="320" y2="457" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="300" y1="463" x2="320" y2="463" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="290" y1="460" x2="300" y2="460" stroke="#f5a623" stroke-width="1"/>
-      <line x1="320" y1="460" x2="330" y2="460" stroke="#f5a623" stroke-width="1"/>
-      <!-- Inductor / coil symbols -->
-      <path d="M 170 420 Q 175 415 180 420 Q 185 415 190 420 Q 195 415 200 420" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <path d="M 650 420 Q 655 415 660 420 Q 665 415 670 420 Q 675 415 680 420" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <path d="M 890 420 Q 895 415 900 420 Q 905 415 910 420 Q 915 415 920 420" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <!-- Diode triangles -->
-      <polygon points="545,448 555,440 555,456" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <line x1="555" y1="440" x2="555" y2="456" stroke="#f5a623" stroke-width="1.5"/>
-      <polygon points="775,438 785,430 785,446" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <line x1="785" y1="430" x2="785" y2="446" stroke="#f5a623" stroke-width="1.5"/>
-      <!-- Ground symbols -->
-      <line x1="120" y1="205" x2="120" y2="215" stroke="#f5a623" stroke-width="1"/>
-      <line x1="112" y1="215" x2="128" y2="215" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="114" y1="218" x2="126" y2="218" stroke="#f5a623" stroke-width="1"/>
-      <line x1="117" y1="221" x2="123" y2="221" stroke="#f5a623" stroke-width="0.8"/>
-      <line x1="480" y1="245" x2="480" y2="255" stroke="#f5a623" stroke-width="1"/>
-      <line x1="472" y1="255" x2="488" y2="255" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="474" y1="258" x2="486" y2="258" stroke="#f5a623" stroke-width="1"/>
-      <line x1="477" y1="261" x2="483" y2="261" stroke="#f5a623" stroke-width="0.8"/>
-      <!-- Node dots -->
-      <circle cx="120" cy="120" r="3" fill="#f5a623"/>
-      <circle cx="360" cy="120" r="3" fill="#f5a623"/>
-      <circle cx="600" cy="120" r="3" fill="#f5a623"/>
-      <circle cx="840" cy="120" r="3" fill="#f5a623"/>
-      <circle cx="1080" cy="120" r="3" fill="#f5a623"/>
-      <circle cx="60" cy="360" r="3" fill="#f5a623"/>
-      <circle cx="300" cy="360" r="3" fill="#f5a623"/>
-      <circle cx="540" cy="360" r="3" fill="#f5a623"/>
-      <circle cx="780" cy="360" r="3" fill="#f5a623"/>
-      <circle cx="1020" cy="360" r="3" fill="#f5a623"/>
-      <!-- Zigzag traces bottom row -->
-      <line x1="60" y1="600" x2="160" y2="600" stroke="#f5a623" stroke-width="1.2"/>
-      <polyline points="160,600 170,585 190,615 210,585 230,615 240,600" fill="none" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="240" y1="600" x2="340" y2="600" stroke="#f5a623" stroke-width="1.2"/>
-      <polyline points="340,600 350,585 370,615 390,585 410,615 420,600" fill="none" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="420" y1="600" x2="520" y2="600" stroke="#f5a623" stroke-width="1.2"/>
-      <polyline points="520,600 530,585 550,615 570,585 590,615 600,600" fill="none" stroke="#f5a623" stroke-width="1.2"/>
-      <line x1="600" y1="600" x2="700" y2="600" stroke="#f5a623" stroke-width="1.2"/>
-      <polyline points="700,600 710,585 730,615 750,585 770,615 780,600" fill="none" stroke="#f5a623" stroke-width="1.2"/>
-      <!-- Voltage source circles -->
-      <circle cx="1050" cy="430" r="14" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <text x="1050" y="434" text-anchor="middle" fill="#f5a623" font-size="12" font-family="Inter">~</text>
-      <circle cx="1200" cy="550" r="14" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1196" y1="546" x2="1204" y2="546" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1196" y1="554" x2="1204" y2="554" stroke="#f5a623" stroke-width="1"/>
-      <line x1="1200" y1="542" x2="1200" y2="550" stroke="#f5a623" stroke-width="1"/>
-      <!-- Switch symbols -->
-      <circle cx="660" cy="598" r="3" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <circle cx="690" cy="598" r="3" fill="none" stroke="#f5a623" stroke-width="1"/>
-      <line x1="663" y1="598" x2="688" y2="590" stroke="#f5a623" stroke-width="1"/>
-    </svg>
+  <!-- Full-bleed skyline photo -->
+  <div class="hero-photo">
+    <img src="images/sd-skyline.jpg" alt="San Diego skyline" onerror="this.style.background='linear-gradient(135deg,#0a0e18,#1e293b)'">
   </div>
-
-  <!-- Photo overlay -->
-  <div class="absolute inset-0 opacity-10 z-0">
-    <img class="w-full h-full object-cover" src="images/sd-skyline.jpg" alt="" onerror="this.style.display='none'">
-  </div>
-  <div class="absolute inset-0 bg-gradient-to-br from-on-background via-on-background/90 to-on-background/60 z-0"></div>
+  <div class="hero-overlay"></div>
 
   <div class="relative z-10 w-full pt-20 pb-16 px-5 md:px-12">
     <div class="max-w-2xl">
-
-      <!-- LOGO — large, prominent, above headline -->
-      <div class="mb-10">
-        <img src="images/logo.png" alt="SoCal Bradley Electric"
-          style="width: 280px; max-width: 75vw; mix-blend-mode: screen; filter: drop-shadow(0 2px 20px rgba(245,166,35,0.25));"
-          onerror="this.style.display='none'">
-      </div>
 
       <!-- License badge -->
       <p class="text-xs font-semibold tracking-[0.15em] uppercase text-primary-container mb-5 font-label">
         CA Lic #1131979 &nbsp;·&nbsp; Licensed &amp; Proven
       </p>
 
-      <!-- Headline — constrained width, normal letter-spacing -->
+      <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.05] tracking-tight mb-5" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">
         Specialized<br>
         <span class="text-primary-container">Electrical</span><br>
@@ -549,69 +537,174 @@
   </div>
 </section>
 
-<!-- PRECISION SOLUTIONS -->
+<!-- PRECISION SOLUTIONS — logo on right -->
 <section class="py-16 md:py-24 px-5 md:px-8 bg-surface" id="services">
   <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-      <div>
+
+    <!-- Header row: text left, logo frame right -->
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 mb-14">
+      <div class="lg:max-w-lg">
         <p class="font-label text-xs text-primary font-bold tracking-widest uppercase mb-3">What We Do</p>
         <h2 class="text-4xl md:text-5xl font-black leading-tight" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">Precision Solutions</h2>
-        <p class="text-secondary mt-3 max-w-sm leading-relaxed">Specialized electrical engineering tailored for elite residential living and high-performance commercial environments.</p>
+        <p class="text-secondary mt-3 leading-relaxed">Specialized electrical engineering tailored for elite residential living and high-performance commercial environments across Southern California.</p>
       </div>
 
-    </div>
-
-    <p class="font-headline font-semibold text-lg mb-5 text-on-surface">Residential Mastery</p>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-14">
-      <div class="bg-surface-container-lowest rounded-xl p-5 ambient-shadow hover:shadow-lg transition-shadow">
-        <div class="w-11 h-11 rounded-lg bg-primary-container/15 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-primary">electric_bolt</span></div>
-        <h4 class="font-headline font-bold text-sm mb-2">Panel Upgrades</h4>
-        <p class="text-secondary text-xs leading-relaxed">Modernizing aging infrastructure for future load demands and EV chargers.</p>
-      </div>
-      <div class="bg-surface-container-lowest rounded-xl p-5 ambient-shadow hover:shadow-lg transition-shadow">
-        <div class="w-11 h-11 rounded-lg bg-primary-container/15 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-primary">ev_station</span></div>
-        <h4 class="font-headline font-bold text-sm mb-2">EV Chargers</h4>
-        <p class="text-secondary text-xs leading-relaxed">Next-gen home charging stations for sustainable mobility, all brands.</p>
-      </div>
-      <div class="bg-surface-container-lowest rounded-xl p-5 ambient-shadow hover:shadow-lg transition-shadow">
-        <div class="w-11 h-11 rounded-lg bg-primary-container/15 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-primary">light</span></div>
-        <h4 class="font-headline font-bold text-sm mb-2">LED Lighting</h4>
-        <p class="text-secondary text-xs leading-relaxed">Atmospheric design meets high-efficiency luminary systems.</p>
-      </div>
-      <div class="bg-surface-container-lowest rounded-xl p-5 ambient-shadow hover:shadow-lg transition-shadow">
-        <div class="w-11 h-11 rounded-lg bg-primary-container/15 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-primary">power</span></div>
-        <h4 class="font-headline font-bold text-sm mb-2">RV and Trailer Power</h4>
-        <p class="text-secondary text-xs leading-relaxed">30A and 50A hookups, permitted and inspected to NEC code.</p>
-      </div>
-      <div class="bg-surface-container-lowest rounded-xl p-5 ambient-shadow hover:shadow-lg transition-shadow">
-        <div class="w-11 h-11 rounded-lg bg-primary-container/15 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-primary">detector_smoke</span></div>
-        <h4 class="font-headline font-bold text-sm mb-2">Smoke and CO Detectors</h4>
-        <p class="text-secondary text-xs leading-relaxed">Smart integration of life-safety monitoring, CA code compliant.</p>
-      </div>
-    </div>
-
-    <p class="font-headline font-semibold text-lg mb-5 text-on-surface">Commercial and Specialty</p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="relative group overflow-hidden rounded-xl bg-on-background aspect-[4/3]">
-        <img class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" src="images/com-01.jpg" alt="Tenant Improvements" onerror="this.style.background='linear-gradient(135deg,#1e293b,#0f172a)'">
-        <div class="absolute inset-0 bg-gradient-to-t from-on-background via-on-background/40 to-transparent"></div>
-        <div class="absolute bottom-0 p-6"><h4 class="font-headline text-lg font-bold text-white mb-1.5">Tenant Improvements</h4><p class="text-slate-200 text-sm leading-relaxed">Bespoke electrical fit-outs for premium commercial and corporate spaces.</p></div>
-      </div>
-      <div class="relative group overflow-hidden rounded-xl bg-on-background aspect-[4/3]">
-        <img class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" src="images/com-02.jpg" alt="Biotech Labs" onerror="this.style.background='linear-gradient(135deg,#0f2040,#0a1628)'">
-        <div class="absolute inset-0 bg-gradient-to-t from-on-background via-on-background/40 to-transparent"></div>
-        <div class="absolute bottom-0 p-6"><h4 class="font-headline text-lg font-bold text-white mb-1.5">Biotech Labs</h4><p class="text-slate-200 text-sm leading-relaxed">Critical power solutions for mission-critical scientific research.</p></div>
-      </div>
-      <div class="relative group overflow-hidden rounded-xl bg-on-background aspect-[4/3]">
-        <img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="images/com-09.jpg" alt="New Construction" onerror="this.style.background='linear-gradient(135deg,#1e2d40,#0f1e2e)'">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10"></div>
-        <div class="absolute bottom-0 p-7">
-          <h4 class="font-headline text-xl font-bold text-white mb-2">New Construction</h4>
-          <p class="text-slate-200 text-sm leading-relaxed">End-to-end electrical design and implementation for modern architecture.</p>
-          <a href="#panels" class="mt-4 inline-flex items-center text-primary-container font-semibold text-sm gap-1 hover:gap-2 transition-all">View Services →</a>
+      <!-- Logo frame -->
+      <div class="logo-frame w-full lg:w-80 flex-shrink-0">
+        <div class="logo-frame-inner" style="padding-bottom: 70px;">
+          <img src="images/logo.png" alt="SoCal Bradley Electric" onerror="this.parentElement.parentElement.style.display='none'">
+        </div>
+        <div class="logo-frame-bar">
+          <span>CA Lic #1131979</span>
+          <span class="logo-frame-badge">Licensed &amp; Bonded</span>
         </div>
       </div>
     </div>
+
+    <!-- ── RESIDENTIAL photo card grid ── -->
+    <p class="font-headline font-semibold text-lg mb-4 text-on-surface">Residential Mastery</p>
+
+    <!-- Section hero banner -->
+    <div class="section-hero mb-4">
+      <img src="images/res-06.jpg" alt="Residential electrical" onerror="this.parentElement.style.background='linear-gradient(135deg,#1e293b,#0f172a)'">
+      <div class="section-hero-overlay"></div>
+      <div class="section-hero-content">
+        <p class="font-label text-xs text-primary-container font-bold tracking-widest uppercase mb-2">Residential Division</p>
+        <h3 class="text-3xl md:text-4xl font-black text-white mb-2" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">
+          Kinetic Power for <span class="text-primary-container">Modern Living.</span>
+        </h3>
+        <p class="text-slate-300 text-sm max-w-md leading-relaxed">Precision engineering meets domestic safety. We provide Southern California homeowners with high-voltage reliability and architectural electrical solutions.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="#contact" class="primary-gradient text-white px-5 py-2.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity">Schedule Installation</a>
+          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">View Portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Residential photo card grid -->
+    <div class="photo-card-grid res-layout mb-14">
+      <!-- Large left card -->
+      <div class="photo-card large" style="grid-row: 1 / 3;">
+        <img src="images/res-09.jpg" alt="Panel Upgrades" onerror="this.parentElement.style.background='#1e293b'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">Residential</div>
+          <div class="photo-card-title">Panel Upgrades</div>
+          <div class="photo-card-desc">100A to 200A service upgrades, subpanel installs, and full replacements — permitted and inspected.</div>
+        </div>
+      </div>
+      <!-- Top row right cards -->
+      <div class="photo-card">
+        <img src="images/res-06.jpg" alt="EV Chargers" onerror="this.parentElement.style.background='#1e293b'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">Level 2</div>
+          <div class="photo-card-title">EV Chargers</div>
+          <div class="photo-card-desc">All major EV brands supported. Permits included.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="images/res-05.jpg" alt="LED Lighting" onerror="this.parentElement.style.background='#1e293b'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">Design</div>
+          <div class="photo-card-title">LED Lighting</div>
+          <div class="photo-card-desc">Recessed, accent, and retrofit lighting systems.</div>
+        </div>
+      </div>
+      <!-- Bottom row right cards -->
+      <div class="photo-card">
+        <img src="images/res-07.jpg" alt="RV Hookups" onerror="this.parentElement.style.background='#1e293b'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">30A · 50A</div>
+          <div class="photo-card-title">RV Power</div>
+          <div class="photo-card-desc">NEMA-spec hookups, NEC compliant.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="images/res-03.jpg" alt="Safety Systems" onerror="this.parentElement.style.background='#1e293b'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">Life Safety</div>
+          <div class="photo-card-title">Smoke &amp; CO</div>
+          <div class="photo-card-desc">Hardwired, CA code compliant, battery backup.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COMMERCIAL photo card grid ── -->
+    <p class="font-headline font-semibold text-lg mb-4 text-on-surface">Commercial and Specialty</p>
+
+    <!-- Section hero banner -->
+    <div class="section-hero mb-4">
+      <img src="images/com-02.jpg" alt="Commercial electrical" onerror="this.parentElement.style.background='linear-gradient(135deg,#0f2040,#0a1628)'">
+      <div class="section-hero-overlay"></div>
+      <div class="section-hero-content">
+        <p class="font-label text-xs text-primary-container font-bold tracking-widest uppercase mb-2">Commercial Division</p>
+        <h3 class="text-3xl md:text-4xl font-black text-white mb-2" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">
+          Mission-Critical <span class="text-primary-container">Power Systems.</span>
+        </h3>
+        <p class="text-slate-300 text-sm max-w-md leading-relaxed">Biotech labs, medical facilities, and large-scale commercial builds. Stringent requirements met with precision conduit work and redundant power systems.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="#contact" class="primary-gradient text-white px-5 py-2.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity">Get a Project Quote</a>
+          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">View Portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commercial photo card grid (mirror layout — large on right) -->
+    <div class="photo-card-grid com-layout">
+      <!-- Top row left cards -->
+      <div class="photo-card">
+        <img src="images/com-02.jpg" alt="Biotech Labs" onerror="this.parentElement.style.background='#0f2040'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">Biotech</div>
+          <div class="photo-card-title">Biotech Labs &amp; Clean Rooms</div>
+          <div class="photo-card-desc">Stringent requirements met with precision conduit work and redundant power systems.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="images/com-05.jpg" alt="Industrial Panels" onerror="this.parentElement.style.background='#0f2040'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">3-Phase</div>
+          <div class="photo-card-title">Industrial Panels</div>
+          <div class="photo-card-desc">Custom distribution systems designed for high-load reliability.</div>
+        </div>
+      </div>
+      <!-- Bottom row left cards -->
+      <div class="photo-card">
+        <img src="images/com-01.jpg" alt="Tenant Improvements" onerror="this.parentElement.style.background='#0f2040'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">TI</div>
+          <div class="photo-card-title">Tenant Improvements</div>
+          <div class="photo-card-desc">Rapid, clean transformations for modern corporate spaces.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="images/com-08.jpg" alt="Architectural Illumination" onerror="this.parentElement.style.background='#0f2040'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">Lighting</div>
+          <div class="photo-card-title">Architectural Illumination</div>
+          <div class="photo-card-desc">Enhancing structure and safety through sophisticated lighting design.</div>
+        </div>
+      </div>
+      <!-- Large right card spanning 2 rows -->
+      <div class="photo-card large" style="grid-column: 3; grid-row: 1 / 3;">
+        <img src="images/com-09.jpg" alt="New Construction" onerror="this.parentElement.style.background='#0f2040'">
+        <div class="photo-card-overlay"></div>
+        <div class="photo-card-content">
+          <div class="photo-card-tag">Ground-Up</div>
+          <div class="photo-card-title">New Construction</div>
+          <div class="photo-card-desc">End-to-end electrical design and implementation for modern architecture. We work with GCs and owners on biotech, medical, and mixed-use projects.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -741,56 +834,32 @@
       <h2 class="text-4xl font-black mb-3" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">Real Reviews</h2>
       <p class="text-secondary max-w-md mx-auto">From homeowners to biotech facility managers, here is what our clients say about working with SoCal Bradley Electric.</p>
     </div>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-      <!-- Placeholder 1 -->
       <div class="tcard">
         <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">
-          "Add your first review here. Paste a Google or Yelp review, or write a summary of what a client told you. Clients can mention the service, the team, the speed, or the quality."
-        </p>
+        <p class="tcard-text">"Add your first review here. Paste a Google or Yelp review, or write a summary of what a client told you. Clients can mention the service, the team, the speed, or the quality."</p>
         <div class="tcard-author">
           <div class="tcard-avatar">A</div>
-          <div>
-            <div class="tcard-name">Client Name</div>
-            <div class="tcard-role">San Diego, CA · Residential</div>
-          </div>
+          <div><div class="tcard-name">Client Name</div><div class="tcard-role">San Diego, CA · Residential</div></div>
         </div>
       </div>
-
-      <!-- Placeholder 2 -->
       <div class="tcard">
         <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">
-          "Add your second review here. A commercial or biotech client testimonial works especially well in this spot to reinforce your specialty expertise."
-        </p>
+        <p class="tcard-text">"Add your second review here. A commercial or biotech client testimonial works especially well in this spot to reinforce your specialty expertise."</p>
         <div class="tcard-author">
           <div class="tcard-avatar">B</div>
-          <div>
-            <div class="tcard-name">Client Name</div>
-            <div class="tcard-role">San Diego, CA · Commercial</div>
-          </div>
+          <div><div class="tcard-name">Client Name</div><div class="tcard-role">San Diego, CA · Commercial</div></div>
         </div>
       </div>
-
-      <!-- Placeholder 3 -->
       <div class="tcard">
         <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">
-          "Add your third review here. Consider pulling reviews from Google Business Profile — they add credibility and help with local SEO rankings."
-        </p>
+        <p class="tcard-text">"Add your third review here. Consider pulling reviews from Google Business Profile — they add credibility and help with local SEO rankings."</p>
         <div class="tcard-author">
           <div class="tcard-avatar">C</div>
-          <div>
-            <div class="tcard-name">Client Name</div>
-            <div class="tcard-role">Orange County, CA · Commercial</div>
-          </div>
+          <div><div class="tcard-name">Client Name</div><div class="tcard-role">Orange County, CA · Commercial</div></div>
         </div>
       </div>
-
     </div>
-
     <div class="text-center mt-10">
       <p class="text-secondary text-sm font-label">
         Leave us a review on
@@ -818,7 +887,6 @@
         <span class="px-4 py-2 rounded-full bg-surface-container text-secondary border border-secondary/20 font-label font-bold text-xs tracking-wide uppercase">North County</span>
         <span class="px-4 py-2 rounded-full bg-surface-container text-secondary border border-secondary/20 font-label font-bold text-xs tracking-wide uppercase">San Bernardino</span>
       </div>
-
       <div class="flex items-center gap-4 p-4 rounded-xl bg-primary-container/8 border border-primary-container/20">
         <span class="material-symbols-outlined text-primary">bolt</span>
         <div class="font-label text-sm font-bold">24/7 Response Available<br>
@@ -826,12 +894,9 @@
       </div>
     </div>
     <div class="lg:w-1/2">
-      <!-- Replace with Google Maps iframe. See README. -->
-      <div class="h-80 rounded-2xl bg-surface-container-highest flex flex-col items-center justify-center gap-4 text-secondary text-center p-8">
-        <span class="material-symbols-outlined text-5xl text-secondary/40">location_on</span>
-        <div class="font-headline font-bold text-on-surface">Southern California Headquarters</div>
-        <div class="font-label text-sm">San Diego, CA</div>
-        <div class="font-label text-xs opacity-40">Replace with Google Maps embed — see README</div>
+      <!-- map.jpg replaces the embed placeholder -->
+      <div class="rounded-2xl overflow-hidden ambient-shadow">
+        <img src="images/map.jpg" alt="Southern California service area map" class="w-full object-cover" style="max-height: 400px;" onerror="this.parentElement.style.background='#e8eeff'; this.parentElement.innerHTML='<div style=\'height:320px;display:flex;align-items:center;justify-content:center;color:#585e6e;flex-direction:column;gap:12px;\'><span style=\'font-size:3rem;\'>📍</span><p style=\'font-family:Inter,sans-serif;font-size:.85rem;\'>map.jpg goes here</p></div>'">
       </div>
     </div>
   </div>
@@ -854,7 +919,7 @@
   </div>
 </section>
 
-<!-- DIVIDER between FAQ and Contact -->
+<!-- DIVIDER -->
 <div class="bg-on-background">
   <div class="max-w-7xl mx-auto px-5 md:px-8">
     <div class="flex items-center gap-6 py-0">
@@ -873,13 +938,10 @@
 <section class="bg-on-background py-16 md:py-24 px-5 md:px-8" id="contact" aria-labelledby="contact-heading">
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
-      <!-- Left: contact info -->
       <div>
         <p class="font-label text-xs text-primary-container font-bold tracking-widest uppercase mb-4">Get In Touch</p>
         <h2 class="font-headline text-4xl md:text-5xl font-bold text-white leading-tight mb-4" id="contact-heading">Request a <span class="text-primary-container">Quote</span></h2>
         <p class="text-slate-400 leading-relaxed mb-10">Call, text, or fill out the form — we'll get back to you fast. Serving San Diego, Orange County, Los Angeles, Riverside, and San Bernardino.</p>
-
         <div class="space-y-6">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
@@ -890,7 +952,6 @@
               <a href="tel:6193336470" class="text-white font-headline font-bold text-lg hover:text-primary-container transition-colors">619-333-6470</a>
             </div>
           </div>
-
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -900,7 +961,6 @@
               <a href="https://instagram.com/socalbradleyelectric" target="_blank" rel="noopener" class="text-white font-semibold hover:text-primary-container transition-colors">@socalbradleyelectric</a>
             </div>
           </div>
-
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -910,7 +970,6 @@
               <div class="text-slate-300 font-semibold">San Diego County, CA</div>
             </div>
           </div>
-
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -920,7 +979,6 @@
               <div class="text-slate-300 font-semibold">CA #1131979 · Bonded &amp; Insured</div>
             </div>
           </div>
-
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -932,8 +990,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Right: form -->
       <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
         <h3 class="font-headline text-2xl font-bold text-white mb-2">Send Us a Message</h3>
         <p class="text-slate-400 text-sm mb-8">Fill out the form and we will get back to you fast.</p>
@@ -976,7 +1032,6 @@
           </button>
         </form>
       </div>
-
     </div>
   </div>
 </section>
@@ -986,8 +1041,7 @@
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
       <div class="md:col-span-1">
-        <img src="images/logo.png" alt="SoCal Bradley Electric" class="h-20 w-auto mb-3" onerror="this.style.display='none'">
-        <div class="font-headline font-bold text-on-surface mb-2"><span class="text-primary">SoCal</span> Bradley Electric</div>
+        <div class="font-headline font-black text-xl text-on-surface mb-3"><span class="text-primary">SoCal</span> Bradley Electric</div>
         <p class="text-secondary text-sm leading-relaxed max-w-xs">Expert commercial electrical solutions for high-complexity environments across Southern California.</p>
       </div>
       <div><h4 class="font-label font-bold text-xs tracking-widest uppercase text-on-surface mb-4">Services</h4><ul class="space-y-2.5 text-sm text-secondary"><li><a href="#panels" class="hover:text-primary transition-colors">Commercial Services</a></li><li><a href="#panels" class="hover:text-primary transition-colors">Biotech Expertise</a></li><li><a href="#panels" class="hover:text-primary transition-colors">Tenant Improvements</a></li><li><a href="#panels" class="hover:text-primary transition-colors">Residential</a></li></ul></div>
@@ -1008,7 +1062,6 @@ if(hamBtn)hamBtn.addEventListener('click',()=>mobMenu.classList.toggle('hidden')
 mobMenu&&mobMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobMenu.classList.add('hidden')));
 
 // Breaker data
-// img field: filename in images/ loaded when breaker is clicked. e.g. res-10.jpg = images/res-10.jpg
 const RES=[
   {num:'01',name:'Ceiling Fans',sub:'Install and Wiring',amp:'20A',img:'res-01.jpg',title:'Ceiling Fan Installation',desc:'New installs, replacements, and full wiring for any ceiling fan with or without an existing fixture. We handle standard and vaulted ceilings and can add wall switches or remote controls in the same visit.',tags:['Ceiling Fans','Standard and Vaulted','Remote Controls','1-Visit']},
   {num:'02',name:'Dimmers and Remotes',sub:'Smart Switch Upgrade',amp:'15A',img:'res-02.jpg',title:'Dimmer and Smart Switch Upgrades',desc:'Replace standard switches with dimmers, timers, or smart switches compatible with Lutron, Leviton, and all major smart home platforms. Single-visit installs with clean, code-compliant wiring.',tags:['Dimmers','Smart Home','Lutron','Leviton']},
