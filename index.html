@@ -549,22 +549,33 @@
     <!-- Header row: text left, logo frame right -->
     <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
       <div class="lg:max-w-lg">
-        <p class="section-label text-primary mb-3">What We Do</p>
-        <h2 class="section-title mb-10" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">Precision Solutions</h2>
+        <p class="section-label text-primary mb-8">What We Do</p>
+        <h2 class="section-title mb-6" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">Precision Solutions</h2>
         <p class="text-secondary mt-3 leading-relaxed">Specialized electrical engineering tailored for elite residential living and high-performance commercial environments across Southern California.</p>
       </div>
 
       <!-- Logo credential block — native to the light surface -->
       <div class="logo-credential w-full lg:w-64 flex-shrink-0 lg:ml-auto">
-        <div class="logo-credential-img">
-          <img src="images/logo.png" alt="SoCal Bradley Electric" onerror="this.parentElement.parentElement.style.display='none'">
-        </div>
-        <div class="logo-credential-badges" style="justify-content:flex-start;">
-          <div class="logo-badge"><div class="logo-badge-dot"></div><span>CA Lic #1131979</span></div>
-          <div class="logo-badge"><div class="logo-badge-dot"></div><span>Licensed &amp; Bonded</span></div>
-          <div class="logo-badge"><div class="logo-badge-dot"></div><span>619-333-6470</span></div>
-        </div>
-      </div>
+        <div class="relative p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+
+  <!-- Framed Logo -->
+  <div class="relative w-full flex justify-center mb-4">
+    <img src="images/logo.png" 
+         alt="SoCal Bradley Electric"
+         class="w-40 drop-shadow-xl">
+
+    <!-- Corner frames -->
+    <span class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-primary-container/60 rounded-tl-sm"></span>
+    <span class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-primary-container/60 rounded-br-sm"></span>
+  </div>
+
+  <!-- Banner -->
+  <div class="text-center text-sm font-semibold tracking-wide text-white/80 bg-primary-container/20 py-2 rounded-md">
+    Residential • Commercial • Biotech
+  </div>
+
+</div>
+
     </div>
 
     <!-- ── RESIDENTIAL photo card grid ── -->
