@@ -55,56 +55,45 @@
 
   /* ── LOGO CREDENTIAL BLOCK ── */
   .logo-credential {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
+    flex-shrink: 0;
+    width: 240px;
   }
   .logo-credential-inner {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 28px 24px 20px;
-    box-shadow: 0 2px 24px rgba(21,28,41,.10), 0 0 0 1px rgba(21,28,41,.06);
+    border-radius: 14px;
+    padding: 28px 20px 20px;
+    box-shadow: 0 4px 32px rgba(21,28,41,.10), 0 0 0 1px rgba(21,28,41,.07);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
     height: 100%;
   }
-  /* Logo gets the spotlight — big and centered */
   .logo-credential-inner img {
     width: 100%;
-    max-width: 200px;
+    max-width: 185px;
     height: auto;
     display: block;
+    flex-shrink: 0;
   }
-  .logo-credential-banner {
-    font-family: var(--font-body);
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.5);
-    background: rgba(245,166,35,0.08);
-    border: 1px solid rgba(245,166,35,0.22);
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-align: center;
+  .logo-credential-divider {
     width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,166,35,0.3), transparent);
   }
+  .logo-credential-banner { display: none; }
   .logo-badges {
     display: flex;
     flex-direction: row;
-    gap: 6px;
-    width: 100%;
+    gap: 5px;
     flex-wrap: wrap;
     justify-content: center;
   }
   .logo-badge-item {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 5px 10px;
+    gap: 4px;
+    padding: 4px 10px;
     border-radius: 20px;
     background: #f4f6fc;
     border: 1px solid rgba(21,28,41,0.09);
@@ -116,13 +105,20 @@
   }
   .logo-badge-label {
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #374151;
   }
   .logo-badge-desc { display: none; }
+  @media(max-width:1023px){
+    .logo-credential { width: 100%; }
+    .logo-credential-inner { flex-direction: row; flex-wrap: wrap; padding: 16px 20px; gap: 16px; align-items: center; }
+    .logo-credential-inner img { max-width: 120px; }
+    .logo-credential-divider { display: none; }
+    .logo-badges { flex: 1; align-content: center; }
+  }
 
   /* ── PHOTO CARD GRID (service sections) ── */
   .photo-card-grid {
@@ -144,18 +140,18 @@
   .photo-card img {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform .5s ease, filter .3s ease;
-    filter: brightness(.75) saturate(.9);
+    filter: brightness(.88) saturate(.95);
   }
   .photo-card:hover img {
-    transform: scale(1.06); filter: brightness(.9) saturate(1.1);
+    transform: scale(1.06); filter: brightness(1) saturate(1.1);
   }
   .photo-card-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(10,14,24,.85) 0%, rgba(10,14,24,.2) 60%, transparent 100%);
+    background: linear-gradient(0deg, rgba(10,14,24,.72) 0%, rgba(10,14,24,.1) 55%, transparent 100%);
     transition: background .3s;
   }
   .photo-card:hover .photo-card-overlay {
-    background: linear-gradient(0deg, rgba(131,85,0,.7) 0%, rgba(10,14,24,.3) 70%, transparent 100%);
+    background: linear-gradient(0deg, rgba(131,85,0,.6) 0%, rgba(10,14,24,.15) 60%, transparent 100%);
   }
   .photo-card-content {
     position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 22px;
@@ -194,11 +190,11 @@
   }
   .section-hero img {
     width: 100%; height: 100%; object-fit: cover;
-    filter: brightness(.35) saturate(.85);
+    filter: brightness(.5) saturate(.9);
   }
   .section-hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(105deg, rgba(10,14,24,.82) 0%, rgba(10,14,24,.4) 60%, transparent 100%);
+    background: linear-gradient(105deg, rgba(10,14,24,.75) 0%, rgba(10,14,24,.3) 60%, transparent 100%);
   }
   .section-hero-content {
     position: absolute; bottom: 0; left: 0; padding: 36px 40px;
@@ -695,8 +691,8 @@
 <section class="py-16 md:py-24 px-5 md:px-8" style="background:#f4f6fc;" id="services">
   <div class="max-w-7xl mx-auto">
 
-    <!-- Header row: text left, logo credential right — MATCHED HEIGHT -->
-    <div class="flex flex-col lg:flex-row lg:items-stretch lg:justify-between gap-10 mb-14">
+    <!-- Header row: text left, logo credential right -->
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 mb-14">
 
       <!-- Text block -->
       <div class="lg:max-w-lg flex flex-col justify-center">
@@ -705,11 +701,11 @@
         <p class="text-secondary leading-relaxed">Specialized electrical engineering tailored for elite residential living and high-performance commercial environments across Southern California.</p>
       </div>
 
-      <!-- Logo credential block — same height as text block -->
-      <div class="logo-credential lg:w-40 flex-shrink-0">
+      <!-- Logo credential block -->
+      <div class="logo-credential">
         <div class="logo-credential-inner">
           <img src="images/logo.png" alt="SoCal Bradley Electric logo">
-          <div class="logo-credential-banner">Residential · Commercial · Biotech</div>
+          <div class="logo-credential-divider"></div>
           <div class="logo-badges">
             <div class="logo-badge-item">
               <div class="logo-badge-dot"></div>
@@ -1250,7 +1246,7 @@ const RES=[
   {num:'03',name:'Smoke and CO Detectors',sub:'Hardwired · CA Code',amp:'15A',img:'res-03.jpg',title:'Smoke and Carbon Monoxide Detectors',desc:'California code-compliant hardwired smoke and CO detector installation with battery backup. Proper placement per CRC requirements with interconnected systems throughout the home.',tags:['Life Safety','CA Code','Hardwired','Battery Backup']},
   {num:'04',name:'Utilities Coordination',sub:'All SoCal Territories',amp:'20A',img:'res-04.jpg',title:'Utilities Coordination and Incentive Programs',desc:'We coordinate directly with your utility provider including SDG&E, SCE, or SoCalGas for interconnection, incentive programs, permits, and inspections across all Southern California territories.',tags:['SDG&E','SCE','SoCalGas','All SoCal']},
   {num:'05',name:'LED Lighting',sub:'Retrofit and New Installs',amp:'15A',img:'res-05.jpg',title:'LED Lighting Retrofit and Installation',desc:'Full LED retrofit for existing fixtures or new recessed, surface, and accent lighting. We design layouts for efficiency and aesthetics, handling all wiring, switching, permits, and utility rebate paperwork.',tags:['LED Retrofit','Recessed','Accent Lighting','Energy Savings']},
-  {num:'06',name:'EV Chargers',sub:'Level 2 · 240V',amp:'50A',img:'ev-charger-closeup.jpeg',title:'EV Charger Installation',desc:'Level 2 (240V) EV charger installation for all vehicles including Tesla, Ford, Rivian, GM, Hyundai, and more. We handle load calculations, dedicated circuits, panel capacity, permits, and utility coordination.',tags:['Level 2','240V','All EV Brands','Permits Included']},
+  {num:'06',name:'EV Chargers',sub:'Level 2 · 240V',amp:'50A',img:'res-06.jpg',title:'EV Charger Installation',desc:'Level 2 (240V) EV charger installation for all vehicles including Tesla, Ford, Rivian, GM, Hyundai, and more. We handle load calculations, dedicated circuits, panel capacity, permits, and utility coordination.',tags:['Level 2','240V','All EV Brands','Permits Included']},
   {num:'07',name:'RV and Trailer Power',sub:'30A and 50A Hookups',amp:'50A',img:'res-07.jpg',title:'RV and Trailer Electrical Hookups',desc:'Dedicated 30A and 50A RV hookups with correct NEMA receptacle, proper ground, permitted and inspected to NEC code. Single-visit installs in most cases.',tags:['30A','50A','NEMA TT-30','NEMA 14-50']},
   {num:'08',name:'General Electrical',sub:'Outlets, Wiring and Repairs',amp:'20A',img:'res-08.jpg',title:'General Electrical Repairs and Upgrades',desc:'Outlet additions, GFCI upgrades, wiring repairs, circuit troubleshooting, and general electrical maintenance. No job too small. We diagnose fast and fix it right.',tags:['Outlets','GFCI','Wiring Repairs','Troubleshooting']},
   {num:'09-10',name:'Panel Upgrades',sub:'100A to 200A · Subpanel Installs',amp:'200A',dbl:true,pole:'2-Pole',img:'res-09.jpg',title:'Electrical Panel Upgrades',desc:'100A to 200A service upgrades, subpanel installations, and full panel replacements. We handle all permits, utility coordination, and inspections. Increase capacity for EV chargers, additions, or aging panels.',tags:['100A to 200A','Subpanels','Full Replacement','Permits Included']},
