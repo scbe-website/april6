@@ -31,55 +31,43 @@
     background: linear-gradient(105deg, rgba(10,14,24,0.88) 0%, rgba(10,14,24,0.70) 50%, rgba(10,14,24,0.30) 100%);
   }
 
-  /* ── LOGO FRAME (right of "What We Do") ── */
-  .logo-frame {
-    position: relative;
-    background: #0d1520;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow:
-      0 40px 80px rgba(0,0,0,.45),
-      0 0 0 1px rgba(245,166,35,.18),
-      inset 0 1px 0 rgba(255,255,255,.06);
+  /* ── LOGO CREDENTIAL BLOCK (right of "What We Do") ── */
+  /* Sits on bg-surface (#f9f9ff) — must feel native, not pasted on */
+  .logo-credential {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
   }
-  .logo-frame::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(131,85,0,.18) 0%, rgba(245,166,35,.06) 100%);
-    z-index: 0;
-  }
-  .logo-frame-inner {
-    position: relative; z-index: 1;
+  .logo-credential-img {
+    /* Simple clean display — logo on white card, soft shadow */
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 28px 36px;
+    box-shadow: 0 2px 24px rgba(21,28,41,.10), 0 0 0 1px rgba(21,28,41,.06);
     display: flex; align-items: center; justify-content: center;
-    padding: 56px 48px;
+    width: 100%;
   }
-  .logo-frame img {
-    max-width: 260px; width: 100%;
-    filter: drop-shadow(0 4px 32px rgba(245,166,35,.35));
+  .logo-credential-img img {
+    max-width: 220px; width: 100%;
   }
-  .logo-frame-bar {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(180deg,#111827,#0a0e18);
-    padding: 14px 24px;
-    display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid rgba(245,166,35,.2);
-    z-index: 1;
+  .logo-credential-badges {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
   }
-  .logo-frame-bar span {
-    font-family: 'Inter',sans-serif; font-size: .62rem; font-weight: 700;
-    letter-spacing: .12em; text-transform: uppercase;
-    color: rgba(245,166,35,.7);
+  .logo-badge {
+    display: flex; align-items: center; gap: 7px;
+    padding: 8px 14px; border-radius: 6px;
+    background: #f1f3ff;
+    border: 1px solid rgba(88,94,110,.12);
   }
-  .logo-frame-badge {
-    display: flex; align-items: center; gap: 6px;
-    font-family: 'Inter',sans-serif; font-size: .58rem; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase; color: #4b5563;
-  }
-  .logo-frame-badge::before {
-    content: '';
-    width: 6px; height: 6px; border-radius: 50%;
+  .logo-badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
     background: #f5a623;
-    box-shadow: 0 0 6px rgba(245,166,35,.6);
+    flex-shrink: 0;
+  }
+  .logo-badge span {
+    font-family: 'Inter',sans-serif; font-size: .62rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: #374151;
   }
 
   /* ── PHOTO CARD GRID (service sections) ── */
@@ -538,7 +526,7 @@
 </section>
 
 <!-- PRECISION SOLUTIONS — logo on right -->
-<section class="py-16 md:py-24 px-5 md:px-8 bg-surface" id="services">
+<section class="py-16 md:py-24 px-5 md:px-8" style="background:#f4f6fc;" id="services">
   <div class="max-w-7xl mx-auto">
 
     <!-- Header row: text left, logo frame right -->
@@ -549,48 +537,49 @@
         <p class="text-secondary mt-3 leading-relaxed">Specialized electrical engineering tailored for elite residential living and high-performance commercial environments across Southern California.</p>
       </div>
 
-      <!-- Logo frame -->
-      <div class="logo-frame w-full lg:w-80 flex-shrink-0">
-        <div class="logo-frame-inner" style="padding-bottom: 70px;">
+      <!-- Logo credential block — native to the light surface -->
+      <div class="logo-credential w-full lg:w-72 flex-shrink-0">
+        <div class="logo-credential-img">
           <img src="images/logo.png" alt="SoCal Bradley Electric" onerror="this.parentElement.parentElement.style.display='none'">
         </div>
-        <div class="logo-frame-bar">
-          <span>CA Lic #1131979</span>
-          <span class="logo-frame-badge">Licensed &amp; Bonded</span>
+        <div class="logo-credential-badges">
+          <div class="logo-badge"><div class="logo-badge-dot"></div><span>CA Lic #1131979</span></div>
+          <div class="logo-badge"><div class="logo-badge-dot"></div><span>Licensed &amp; Bonded</span></div>
+          <div class="logo-badge"><div class="logo-badge-dot"></div><span>619-333-6470</span></div>
         </div>
       </div>
     </div>
 
     <!-- ── RESIDENTIAL photo card grid ── -->
-    <p class="font-headline font-semibold text-lg mb-4 text-on-surface">Residential Mastery</p>
+    <p class="font-headline font-semibold text-sm tracking-widest uppercase text-secondary mb-4" style="letter-spacing:.12em;">Residential</p>
 
     <!-- Section hero banner -->
-    <div class="section-hero mb-4">
+    <div class="section-hero mb-1">
       <img src="images/res-06.jpg" alt="Residential electrical" onerror="this.parentElement.style.background='linear-gradient(135deg,#1e293b,#0f172a)'">
       <div class="section-hero-overlay"></div>
       <div class="section-hero-content">
         <p class="font-label text-xs text-primary-container font-bold tracking-widest uppercase mb-2">Residential Division</p>
         <h3 class="text-3xl md:text-4xl font-black text-white mb-2" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">
-          Kinetic Power for <span class="text-primary-container">Modern Living.</span>
+          Power for <span class="text-primary-container">Modern Living.</span>
         </h3>
-        <p class="text-slate-300 text-sm max-w-md leading-relaxed">Precision engineering meets domestic safety. We provide Southern California homeowners with high-voltage reliability and architectural electrical solutions.</p>
-        <div class="flex gap-3 mt-4">
-          <a href="#contact" class="primary-gradient text-white px-5 py-2.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity">Schedule Installation</a>
-          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">View Portfolio</a>
+        <p class="text-slate-300 text-sm max-w-sm leading-relaxed">Panel upgrades, EV chargers, smart switches, and everything in between — permitted, inspected, and done right the first time.</p>
+        <div class="flex gap-3 mt-5">
+          <a href="#contact" class="primary-gradient text-white px-5 py-2.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity">Get a Quote</a>
+          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">See All Services</a>
         </div>
       </div>
     </div>
 
     <!-- Residential photo card grid -->
-    <div class="photo-card-grid res-layout mb-14">
+    <div class="photo-card-grid res-layout mb-16">
       <!-- Large left card -->
       <div class="photo-card large" style="grid-row: 1 / 3;">
         <img src="images/res-09.jpg" alt="Panel Upgrades" onerror="this.parentElement.style.background='#1e293b'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">Residential</div>
+          <div class="photo-card-tag">100A – 200A</div>
           <div class="photo-card-title">Panel Upgrades</div>
-          <div class="photo-card-desc">100A to 200A service upgrades, subpanel installs, and full replacements — permitted and inspected.</div>
+          <div class="photo-card-desc">Full service upgrades and subpanel installs. We handle permits, utility coordination, and the final inspection — no surprises.</div>
         </div>
       </div>
       <!-- Top row right cards -->
@@ -598,18 +587,18 @@
         <img src="images/res-06.jpg" alt="EV Chargers" onerror="this.parentElement.style.background='#1e293b'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">Level 2</div>
-          <div class="photo-card-title">EV Chargers</div>
-          <div class="photo-card-desc">All major EV brands supported. Permits included.</div>
+          <div class="photo-card-tag">Level 2 · 240V</div>
+          <div class="photo-card-title">EV Charger Installation</div>
+          <div class="photo-card-desc">Tesla, Ford, Rivian, and all other brands. Dedicated circuit, load calculation, permit, and utility sign-off included.</div>
         </div>
       </div>
       <div class="photo-card">
         <img src="images/res-05.jpg" alt="LED Lighting" onerror="this.parentElement.style.background='#1e293b'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">Design</div>
+          <div class="photo-card-tag">Recessed · Accent</div>
           <div class="photo-card-title">LED Lighting</div>
-          <div class="photo-card-desc">Recessed, accent, and retrofit lighting systems.</div>
+          <div class="photo-card-desc">New recessed layouts, retrofit upgrades, and dimmer integration. We coordinate utility rebates where available.</div>
         </div>
       </div>
       <!-- Bottom row right cards -->
@@ -617,38 +606,38 @@
         <img src="images/res-07.jpg" alt="RV Hookups" onerror="this.parentElement.style.background='#1e293b'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">30A · 50A</div>
-          <div class="photo-card-title">RV Power</div>
-          <div class="photo-card-desc">NEMA-spec hookups, NEC compliant.</div>
+          <div class="photo-card-tag">30A · 50A NEMA</div>
+          <div class="photo-card-title">RV &amp; Trailer Power</div>
+          <div class="photo-card-desc">Permitted, inspected NEMA TT-30 and 14-50 hookups. Most single-visit installs with proper grounding to code.</div>
         </div>
       </div>
       <div class="photo-card">
         <img src="images/res-03.jpg" alt="Safety Systems" onerror="this.parentElement.style.background='#1e293b'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">Life Safety</div>
-          <div class="photo-card-title">Smoke &amp; CO</div>
-          <div class="photo-card-desc">Hardwired, CA code compliant, battery backup.</div>
+          <div class="photo-card-tag">CA Code · Hardwired</div>
+          <div class="photo-card-title">Smoke &amp; CO Detectors</div>
+          <div class="photo-card-desc">Interconnected hardwired systems with battery backup. Placed and installed per California Residential Code requirements.</div>
         </div>
       </div>
     </div>
 
     <!-- ── COMMERCIAL photo card grid ── -->
-    <p class="font-headline font-semibold text-lg mb-4 text-on-surface">Commercial and Specialty</p>
+    <p class="font-headline font-semibold text-sm tracking-widest uppercase text-secondary mb-4" style="letter-spacing:.12em;">Commercial &amp; Specialty</p>
 
     <!-- Section hero banner -->
-    <div class="section-hero mb-4">
+    <div class="section-hero mb-1">
       <img src="images/com-02.jpg" alt="Commercial electrical" onerror="this.parentElement.style.background='linear-gradient(135deg,#0f2040,#0a1628)'">
       <div class="section-hero-overlay"></div>
       <div class="section-hero-content">
         <p class="font-label text-xs text-primary-container font-bold tracking-widest uppercase mb-2">Commercial Division</p>
         <h3 class="text-3xl md:text-4xl font-black text-white mb-2" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">
-          Mission-Critical <span class="text-primary-container">Power Systems.</span>
+          Built for <span class="text-primary-container">High-Stakes Environments.</span>
         </h3>
-        <p class="text-slate-300 text-sm max-w-md leading-relaxed">Biotech labs, medical facilities, and large-scale commercial builds. Stringent requirements met with precision conduit work and redundant power systems.</p>
-        <div class="flex gap-3 mt-4">
+        <p class="text-slate-300 text-sm max-w-sm leading-relaxed">From biotech cleanrooms to ground-up construction — 12 years delivering code-compliant electrical systems for facilities where failure is not an option.</p>
+        <div class="flex gap-3 mt-5">
           <a href="#contact" class="primary-gradient text-white px-5 py-2.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity">Get a Project Quote</a>
-          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">View Portfolio</a>
+          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">See All Services</a>
         </div>
       </div>
     </div>
@@ -660,18 +649,18 @@
         <img src="images/com-02.jpg" alt="Biotech Labs" onerror="this.parentElement.style.background='#0f2040'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">Biotech</div>
-          <div class="photo-card-title">Biotech Labs &amp; Clean Rooms</div>
-          <div class="photo-card-desc">Stringent requirements met with precision conduit work and redundant power systems.</div>
+          <div class="photo-card-tag">Biotech · Cleanroom</div>
+          <div class="photo-card-title">Lab &amp; Life Sciences</div>
+          <div class="photo-card-desc">Dedicated instrument circuits, isolated power panels, UPS coordination, and cleanroom-compatible wiring for research facilities.</div>
         </div>
       </div>
       <div class="photo-card">
-        <img src="images/com-05.jpg" alt="Industrial Panels" onerror="this.parentElement.style.background='#0f2040'">
+        <img src="images/com-05.jpg" alt="3-Phase Power" onerror="this.parentElement.style.background='#0f2040'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">3-Phase</div>
-          <div class="photo-card-title">Industrial Panels</div>
-          <div class="photo-card-desc">Custom distribution systems designed for high-load reliability.</div>
+          <div class="photo-card-tag">480V · 208V · 3-Phase</div>
+          <div class="photo-card-title">Power Distribution</div>
+          <div class="photo-card-desc">Three-phase service upgrades, distribution panel installs, and load balancing for manufacturing and commercial facilities.</div>
         </div>
       </div>
       <!-- Bottom row left cards -->
@@ -679,18 +668,18 @@
         <img src="images/com-01.jpg" alt="Tenant Improvements" onerror="this.parentElement.style.background='#0f2040'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">TI</div>
+          <div class="photo-card-tag">Permit to Final</div>
           <div class="photo-card-title">Tenant Improvements</div>
-          <div class="photo-card-desc">Rapid, clean transformations for modern corporate spaces.</div>
+          <div class="photo-card-desc">Full electrical build-outs for commercial TI projects. Office, medical, and lab spaces delivered on schedule and to code.</div>
         </div>
       </div>
       <div class="photo-card">
-        <img src="images/com-08.jpg" alt="Architectural Illumination" onerror="this.parentElement.style.background='#0f2040'">
+        <img src="images/com-04.jpg" alt="Emergency Power" onerror="this.parentElement.style.background='#0f2040'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">Lighting</div>
-          <div class="photo-card-title">Architectural Illumination</div>
-          <div class="photo-card-desc">Enhancing structure and safety through sophisticated lighting design.</div>
+          <div class="photo-card-tag">NFPA 110</div>
+          <div class="photo-card-title">Emergency &amp; Backup Power</div>
+          <div class="photo-card-desc">Standby generator connections, transfer switch installation, and UPS integration for facilities requiring continuous uptime.</div>
         </div>
       </div>
       <!-- Large right card spanning 2 rows -->
@@ -698,9 +687,9 @@
         <img src="images/com-09.jpg" alt="New Construction" onerror="this.parentElement.style.background='#0f2040'">
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
-          <div class="photo-card-tag">Ground-Up</div>
+          <div class="photo-card-tag">Ground-Up · GC Coordination</div>
           <div class="photo-card-title">New Construction</div>
-          <div class="photo-card-desc">End-to-end electrical design and implementation for modern architecture. We work with GCs and owners on biotech, medical, and mixed-use projects.</div>
+          <div class="photo-card-desc">End-to-end electrical from underground conduit to final fixture trim. We work directly with general contractors and owners on biotech, medical, and mixed-use projects across SoCal.</div>
         </div>
       </div>
     </div>
@@ -709,7 +698,7 @@
 </section>
 
 <!-- SERVICE PANELS -->
-<section class="py-16 md:py-24 px-5 md:px-8 bg-surface-container-low" id="panels">
+<section class="py-16 md:py-24 px-5 md:px-8" style="background:#f4f6fc;" id="panels">
   <div class="max-w-7xl mx-auto">
     <div class="mb-12">
       <p class="font-label text-xs text-primary font-bold tracking-widest uppercase mb-3">Service Detail</p>
@@ -806,7 +795,7 @@
 </section>
 
 <!-- WHY CHOOSE US -->
-<section class="py-16 md:py-24 px-5 md:px-8 bg-surface-container-low" id="why">
+<section class="py-16 md:py-24 px-5 md:px-8 bg-surface" id="why">
   <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start gap-16" id="about">
     <div class="lg:w-1/2">
       <p class="font-label text-xs text-primary font-bold tracking-widest uppercase mb-4">Why Choose Us</p>
