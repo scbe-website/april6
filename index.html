@@ -466,7 +466,7 @@
       </p>
 
       <!-- Headline -->
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.05] tracking-tight mb-5" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">
+      <h1 class="hero-headline mb-5">
         Specialized<br>
         <span class="text-primary-container">Electrical</span><br>
         for Biotech<br>&amp; Medical.
@@ -887,7 +887,7 @@
 <!-- FAQ -->
 <section class="py-16 md:py-24 px-5 md:px-8 bg-on-background" id="faq">
   <div class="max-w-3xl mx-auto text-center mb-10 md:mb-14">
-    <h2 class="section-title mb-10" style="font-family:Inter,sans-serif; letter-spacing:-0.02em;">Common Inquiries</h2>
+    <h2 class="section-title section-title-light mb-10" style="letter-spacing:-0.02em;">Common Inquiries</h2>
     <p class="text-slate-400">Everything you need to know about our electrical company and services across Southern California.</p>
   </div>
   <div class="max-w-3xl mx-auto space-y-3">
@@ -1132,23 +1132,55 @@ buildPanel(COM,'com-grid','com');
   .section-title {
     font-family: Inter, sans-serif;
     font-weight: 900;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.1;
     position: relative;
     display: inline-block;
-    padding-bottom: 0.4em;
+    padding-bottom: 0.35em;
+    color: #151c29; /* default: dark text for light backgrounds */
   }
 
-  /* Underline accent */
+  /* Light-text variant for dark section backgrounds */
+  .section-title-light {
+    color: #ffffff;
+  }
+
+  /* Underline accent for h2 */
   .section-title::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 60%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary-container), transparent);
+    width: 55%;
+    height: 3px;
+    background: linear-gradient(90deg, #f5a623, transparent);
     border-radius: 9999px;
+  }
+
+  /* H1 hero headline */
+  .hero-headline {
+    font-family: Inter, sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.3em;
+  }
+
+  /* Glowy underline accent for h1 */
+  .hero-headline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, #f5a623, rgba(245,166,35,0));
+    border-radius: 9999px;
+    box-shadow: 0 0 16px 3px rgba(245,166,35,0.55), 0 0 32px 6px rgba(245,166,35,0.2);
   }
 </style>
 
