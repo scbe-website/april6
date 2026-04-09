@@ -39,7 +39,43 @@
   .glass-nav{background:rgba(10,14,24,.88);backdrop-filter:blur(20px)}
   .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
   .ambient-shadow{box-shadow:0 32px 64px -12px rgba(21,28,41,.08)}
-  .primary-gradient{background:linear-gradient(135deg,#835500 0%,#f5a623 100%)}
+  .primary-gradient{background:linear-gradient(135deg,rgba(131,85,0,0.92) 0%,rgba(232,151,31,0.88) 100%);backdrop-filter:blur(4px);border:1px solid rgba(245,166,35,0.35);}
+  /* Unified button style */
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(131,85,0,0.90) 0%, rgba(232,151,31,0.86) 100%);
+    border: 1px solid rgba(245,166,35,0.4);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    padding: 10px 22px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+    transition: opacity 0.15s, transform 0.1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn-primary:hover { opacity: 0.92; }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: rgba(255,255,255,0.88);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    padding: 10px 22px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.4); }
 
   /* ── HERO ── */
   .hero-photo {
@@ -86,17 +122,20 @@
   .logo-badge-desc { display: none; }
 
   @media(max-width:1023px){
-    .logo-credential { width: 100%; }
+    .logo-credential { width: 100%; display: flex; justify-content: center; }
     .logo-credential-inner {
       flex-direction: column;
-      padding: 28px 24px;
+      padding: 24px 28px;
       min-height: auto;
       justify-content: center;
       align-items: center;
+      width: auto;
+      min-width: 240px;
+      max-width: 320px;
     }
     .logo-credential-inner img {
-      width: 100%;
-      max-width: 280px;
+      width: 220px;
+      max-width: 100%;
     }
   }
 
@@ -141,12 +180,16 @@
   }
   .photo-card-tag {
     display: inline-block;
-    font-family: var(--font-body); font-size: .5rem; font-weight: 600;
-    letter-spacing: .1em; text-transform: uppercase;
-    color: #f5a623; background: rgba(10,14,24,.55);
+    font-family: var(--font-body); font-size: .48rem; font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase;
+    color: #f5a623; background: rgba(10,14,24,.6);
     border: 1px solid rgba(245,166,35,.35);
-    padding: 3px 8px; border-radius: 3px; margin-bottom: 4px;
+    padding: 3px 7px; border-radius: 3px; margin-bottom: 4px;
     backdrop-filter: blur(4px);
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.3;
+    max-width: 100%;
   }
   .photo-card-desc {
     font-family: var(--font-body); font-size: .72rem; color: rgba(255,255,255,.8);
@@ -161,32 +204,37 @@
     .com-layout .photo-card:last-child  { grid-column: 3; grid-row: 1 / 3; }
   }
 
-  /* Mobile: stack into 2-col then single col */
+  /* Mobile: 2-col with hero card spanning full width */
   @media(max-width:767px){
     .photo-card-grid.res-layout,
     .photo-card-grid.com-layout {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(3, 160px);
+      grid-template-rows: 200px 160px 160px;
     }
     .res-layout .photo-card:first-child {
       grid-column: 1 / -1;
       grid-row: 1;
+      order: -1;
     }
     .com-layout .photo-card:last-child {
-      grid-column: 1 / -1;
-      grid-row: 1;
+      grid-column: 1 / -1 !important;
+      grid-row: 1 !important;
+      order: -1;
     }
+    .photo-card-content { padding: 12px 14px; }
   }
+
   @media(max-width:479px){
     .photo-card-grid.res-layout,
     .photo-card-grid.com-layout {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(5, 170px);
+      grid-template-rows: repeat(5, 160px);
     }
     .res-layout .photo-card:first-child,
     .com-layout .photo-card:last-child {
-      grid-column: 1;
-      grid-row: 1;
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+      order: -1;
     }
   }
 
@@ -530,8 +578,8 @@
     content: "";
     position: absolute;
     left: 0; bottom: 0;
-    width: 48px; height: 3px;
-    background: var(--color-gold);
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, #e8971f 0%, rgba(232,151,31,0.3) 60%, transparent 100%);
     border-radius: 2px;
   }
   .section-label {
@@ -559,10 +607,10 @@
     content: "";
     position: absolute;
     left: 0; bottom: 0;
-    width: 64px; height: 3px;
-    background: var(--color-gold);
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, #e8971f 0%, rgba(232,151,31,0.25) 65%, transparent 100%);
     border-radius: 2px;
-    box-shadow: 0 0 12px 2px rgba(232,151,31,0.5);
+    box-shadow: 0 0 14px 3px rgba(232,151,31,0.45), 0 0 28px 6px rgba(232,151,31,0.18);
   }
   .stat-label {
     font-family: var(--font-body), sans-serif;
@@ -596,7 +644,7 @@
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.21h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.81a16 16 0 006 6l.92-.92a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         619-333-6470
       </a>
-      <a href="#contact" class="primary-gradient text-white px-4 py-2 rounded-md font-label font-semibold text-sm hover:opacity-90 active:scale-95 transition-all duration-100 whitespace-nowrap">Request Quote</a>
+      <a href="#contact" class="btn-primary">Request Quote</a>
       <button class="md:hidden p-1.5 rounded-md hover:bg-white/10 transition-colors" id="hamBtn" aria-label="Menu">
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
@@ -642,10 +690,10 @@
         </span>
       </div>
       <div class="flex flex-col sm:flex-row gap-3">
-        <a href="#contact" class="primary-gradient text-white px-7 py-3.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2">
+        <a href="#contact" class="btn-primary">
           Request a Quote →
         </a>
-        <a href="#services" class="bg-white/10 border border-white/20 text-white px-7 py-3.5 rounded font-semibold text-sm hover:bg-white/15 transition-all inline-flex items-center justify-center gap-2">
+        <a href="#services" class="btn-secondary">
           View Expertise
         </a>
       </div>
@@ -685,10 +733,10 @@
         <p class="text-secondary leading-relaxed">Specialized electrical engineering tailored for elite residential living and high-performance commercial environments across Southern California.</p>
       </div>
 
-      <!-- Logo credential — clean, just the logo -->
+      <!-- Logo credential: clean, just the logo -->
       <div class="logo-credential">
         <div class="logo-credential-inner">
-          <img src="images/logo.png" alt="SoCal Bradley Electric — CA Lic #1131979">
+          <img src="images/logo.png" alt="SoCal Bradley Electric CA Lic #1131979">
         </div>
       </div>
     </div>
@@ -703,10 +751,10 @@
         <h3 class="text-3xl md:text-4xl font-black text-white mb-2" style="font-family:var(--font-display),sans-serif; letter-spacing:-0.02em;">
           Power for <span class="text-primary-container">Modern Living.</span>
         </h3>
-        <p class="text-slate-300 text-sm max-w-sm leading-relaxed">Panel upgrades, EV chargers, smart switches, and everything in between — permitted, inspected, and done right the first time.</p>
+        <p class="text-slate-300 text-sm max-w-sm leading-relaxed">Panel upgrades, EV chargers, smart switches, and everything in between permitted, inspected, and done right the first time.</p>
         <div class="flex gap-3 mt-5">
-          <a href="#contact" class="primary-gradient text-white px-5 py-2.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity">Get a Quote</a>
-          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">See All Services</a>
+          <a href="#contact" class="btn-primary">Get a Quote</a>
+          <a href="#panels" class="btn-secondary">See All Services</a>
         </div>
       </div>
     </div>
@@ -717,7 +765,7 @@
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
           <div class="photo-card-tag">Panel Upgrades</div>
-          <div class="photo-card-desc">Service upgrades and subpanel installs — permits and inspection included.</div>
+          <div class="photo-card-desc">Service upgrades and subpanel installs. Permits and inspection included..</div>
         </div>
       </div>
       <div class="photo-card">
@@ -766,8 +814,8 @@
         </h3>
         <p class="text-slate-300 text-sm max-w-sm leading-relaxed">From biotech cleanrooms to ground-up construction. 12 years delivering code-compliant electrical systems for facilities where failure is not an option.</p>
         <div class="flex gap-3 mt-5">
-          <a href="#contact" class="primary-gradient text-white px-5 py-2.5 rounded font-semibold text-sm hover:opacity-90 transition-opacity">Get a Project Quote</a>
-          <a href="#panels" class="text-white/80 px-5 py-2.5 rounded font-semibold text-sm border border-white/25 hover:bg-white/10 transition-all">See All Services</a>
+          <a href="#contact" class="btn-primary">Get a Project Quote</a>
+          <a href="#panels" class="btn-secondary">See All Services</a>
         </div>
       </div>
     </div>
@@ -794,7 +842,7 @@
         <div class="photo-card-overlay"></div>
         <div class="photo-card-content">
           <div class="photo-card-tag">Permit to Final Tenant Improvements</div>
-          <div class="photo-card-desc">Full TI build-outs for office, medical, and lab spaces — permit to final.</div>
+          <div class="photo-card-desc">Full TI build-outs for office, medical, and lab spaces from permit to final.</div>
         </div>
       </div>
       <div class="photo-card">
@@ -824,8 +872,8 @@
     <div class="mb-12">
       <p class="section-label text-primary mb-3">Service Detail</p>
       <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-        <h2 class="section-title mb-10" style="letter-spacing:-0.02em;">Tap Any Breaker<br><span class="text-primary-container">to Learn More.</span></h2>
-        <p class="text-secondary leading-relaxed max-w-sm">A sample of our most requested services. Don't see what you need? Call <a href="tel:6193336470" class="text-primary font-semibold hover:underline">619-333-6470</a>.</p>
+        <h2 class="section-title mb-10" style="letter-spacing:-0.02em;">Browse Our<br><span class="text-primary-container">Service Panels.</span></h2>
+        <p class="text-secondary leading-relaxed max-w-sm">Check out our service panels below to browse a sample of our most requested services. Don't see what you need? We most likely can do it. Give us a call at <a href="tel:6193336470" class="text-primary font-semibold hover:underline">619-333-6470</a> and let's talk through your project.</p>
       </div>
     </div>
 
@@ -864,7 +912,7 @@
             <div class="pd-title" id="res-title">Select a Service</div>
             <div class="pd-desc" id="res-desc">Click any breaker above to learn more about that service, see photos of our work, and get a quote.</div>
             <div class="pd-tags" id="res-tags"></div>
-            <a href="tel:6193336470" class="primary-gradient text-white px-5 py-2 rounded-md font-headline font-bold text-xs hover:opacity-90 transition-all self-start" id="res-cta" style="display:none">Get a Quote →</a>
+            <a href="tel:6193336470" class="btn-primary self-start" id="res-cta" style="font-size:0.75rem;padding:7px 16px;display:none;">Get a Quote →</a>
           </div>
         </div>
         <div class="panel-nameplate"><span>CA Lic #1131979 · Bonded and Insured</span><span class="np-ph">619-333-6470</span></div>
@@ -879,7 +927,7 @@
       </div>
       <div class="panel-shell">
         <div class="panel-mfr">
-          <span class="panel-biz">SoCal Bradley Electric — Commercial Division</span>
+          <span class="panel-biz">SoCal Bradley Electric: Commercial Division</span>
           <span class="panel-meta">Biotech · Medical · Industrial · CA Lic #1131979</span>
         </div>
         <div class="panel-bezel">
@@ -906,7 +954,7 @@
             <div class="pd-title" id="com-title">Select a Service</div>
             <div class="pd-desc" id="com-desc">Click any breaker above to learn more about that commercial service, see photos of our work, and request a project quote.</div>
             <div class="pd-tags" id="com-tags"></div>
-            <a href="tel:6193336470" class="primary-gradient text-white px-5 py-2 rounded-md font-headline font-bold text-xs hover:opacity-90 transition-all self-start" id="com-cta" style="display:none">Get a Quote →</a>
+            <a href="tel:6193336470" class="btn-primary self-start" id="com-cta" style="font-size:0.75rem;padding:7px 16px;display:none;">Get a Quote →</a>
           </div>
         </div>
         <div class="panel-nameplate"><span>CA Lic #1131979 · Bonded and Insured · 12 Years Commercial Experience</span><span class="np-ph">619-333-6470</span></div>
@@ -924,7 +972,7 @@
       <div class="space-y-9">
         <div class="flex gap-6"><div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-container/15 flex items-center justify-center"><span class="material-symbols-outlined text-primary">verified</span></div><div><h4 class="font-headline font-bold text-xl mb-2">We Pull Every Permit</h4><p class="text-secondary leading-relaxed">Panel upgrades, EV chargers, RV hookups: all properly permitted and inspected. No shortcuts that could cost you on a future sale or insurance claim.</p></div></div>
         <div class="flex gap-6"><div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-container/15 flex items-center justify-center"><span class="material-symbols-outlined text-primary">science</span></div><div><h4 class="font-headline font-bold text-xl mb-2">Commercial-Grade Expertise</h4><p class="text-secondary leading-relaxed">12 years of hands-on experience with biotech labs, medical buildings, and large commercial projects. We bring that precision to every job, big or small.</p></div></div>
-        <div class="flex gap-6"><div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-container/15 flex items-center justify-center"><span class="material-symbols-outlined text-primary">receipt_long</span></div><div><h4 class="font-headline font-bold text-xl mb-2">Transparent Pricing</h4><p class="text-secondary leading-relaxed">No surprise invoices. We explain what the job involves, what it costs, and why — before we start. Electrical work doesn't have to feel like a black box.</p></div></div>
+        <div class="flex gap-6"><div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-container/15 flex items-center justify-center"><span class="material-symbols-outlined text-primary">receipt_long</span></div><div><h4 class="font-headline font-bold text-xl mb-2">Transparent Pricing</h4><p class="text-secondary leading-relaxed">No surprise invoices. We explain what the job involves, what it costs, and why, before we start. Electrical work doesn't have to feel like a black box.</p></div></div>
         <div class="flex gap-6"><div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-container/15 flex items-center justify-center"><span class="material-symbols-outlined text-primary">support_agent</span></div><div><h4 class="font-headline font-bold text-xl mb-2">24/7 Emergency Service</h4><p class="text-secondary leading-relaxed">Electrical emergencies don't wait for business hours. We're available around the clock for urgent issues across all of Southern California.</p></div></div>
       </div>
     </div>
@@ -932,7 +980,7 @@
       <div class="rounded-2xl overflow-hidden ambient-shadow">
         <img class="why-img w-full aspect-[4/5] object-cover"
           src="images/lightbulb-trail.jpg"
-          alt="SoCal Bradley Electric technician at work"
+          alt="Good electrical work should be invisible. When it's done right, the lights just work."
           onerror="this.style.background='linear-gradient(135deg,#e8eeff,#dce2f5)'">
       </div>
     </div>
@@ -966,7 +1014,7 @@
       </div>
       <div class="tcard">
         <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"Add your third review here. Consider pulling reviews from Google Business Profile — they add credibility and help with local SEO rankings."</p>
+        <p class="tcard-text">"Add your third review here. Consider pulling reviews from Google Business Profile. They add credibility and help with local SEO rankings."</p>
         <div class="tcard-author">
           <div class="tcard-avatar">C</div>
           <div><div class="tcard-name">Client Name</div><div class="tcard-role">Orange County, CA · Commercial</div></div>
@@ -990,7 +1038,7 @@
   <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
     <div class="lg:w-1/2">
       <p class="section-label text-primary mb-4">Service Radius</p>
-      <h2 class="section-title mb-10" style="letter-spacing:-0.02em;">Strategic Southern California<br><span class="text-primary-container">Support.</span></h2>
+      <h2 class="section-title mb-10" style="letter-spacing:-0.02em;">Serving Every Corner<br><span class="text-primary-container">of SoCal.</span></h2>
       <p class="text-secondary leading-relaxed mb-8">Based in San Diego. Licensed and equipped for commercial and residential projects throughout Southern California.</p>
       <div class="flex flex-wrap gap-3 mb-8">
         <span class="px-4 py-2 rounded-full bg-surface-container text-secondary border border-secondary/20 font-label font-bold text-xs tracking-wide uppercase">San Diego County</span>
@@ -1008,17 +1056,17 @@
     </div>
     <div class="lg:w-1/2">
       <div class="rounded-2xl overflow-hidden ambient-shadow">
-        <img src="images/map.jpg" alt="Southern California service area map" class="w-full object-cover" style="max-height: 400px;" onerror="this.parentElement.style.background='#e8eeff'; this.parentElement.innerHTML='<div style=\'height:320px;display:flex;align-items:center;justify-content:center;color:#585e6e;flex-direction:column;gap:12px;\'><span style=\'font-size:3rem;\'>📍</span><p style=\'font-family:var(--font-body),sans-serif;font-size:.85rem;\'>map.jpg goes here</p></div>'">
+        <img src="images/map.jpg" alt="Map of Southern California counties served including San Diego, Orange, Los Angeles, Riverside, and San Bernardino" class="w-full object-cover" style="max-height: 400px;" onerror="this.parentElement.style.background='#e8eeff'; this.parentElement.innerHTML='<div style=\'height:320px;display:flex;align-items:center;justify-content:center;color:#585e6e;flex-direction:column;gap:12px;\'><span style=\'font-size:3rem;\'>📍</span><p style=\'font-family:var(--font-body),sans-serif;font-size:.85rem;\'>map.jpg goes here</p></div>'">
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ — single heading, improved accordion contrast -->
+<!-- FAQ: single heading, improved accordion contrast -->
 <section class="py-16 md:py-24 px-5 md:px-8 bg-on-background" id="faq">
   <div class="max-w-3xl mx-auto text-center mb-10 md:mb-14">
     <h2 class="section-title section-title-light mb-6" style="letter-spacing:-0.02em;">Frequently Asked Questions</h2>
-    <p class="text-slate-400">Everything you need to know about our electrical company and services across Southern California.</p>
+    <p class="text-slate-400">Answers to some of the questions we hear most often. Still have something on your mind? Just call us at 619-333-6470.</p>
   </div>
   <div class="max-w-3xl mx-auto space-y-3">
     <details class="group rounded-xl">
@@ -1088,14 +1136,14 @@
   </div>
 </div>
 
-<!-- CONTACT — removed Service Area row, higher contrast form box -->
+<!-- CONTACT: removed Service Area row, higher contrast form box -->
 <section class="bg-on-background py-16 md:py-24 px-5 md:px-8" id="contact" aria-labelledby="contact-heading">
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
       <div>
         <p class="section-label section-label-light mb-4">Get In Touch</p>
         <h2 class="font-headline text-4xl md:text-5xl font-bold text-white leading-tight mb-4" id="contact-heading">Request a <span class="text-primary-container">Quote</span></h2>
-        <p class="text-slate-400 leading-relaxed mb-10">Call, text, or fill out the form — we'll get back to you fast. Serving San Diego, Orange County, Los Angeles, Riverside, and San Bernardino.</p>
+        <p class="text-slate-400 leading-relaxed mb-10">Call, text, or fill out the form and we'll get back to you fast. Serving San Diego, Orange County, Los Angeles, Riverside, and San Bernardino.</p>
         <div class="space-y-6">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center flex-shrink-0">
@@ -1130,7 +1178,7 @@
             </div>
             <div>
               <div class="font-label text-xs font-bold tracking-widest uppercase text-slate-500 mb-1">Hours</div>
-              <div class="text-slate-300 font-semibold text-sm">Mon–Fri 7am–6pm · Sat 8am–3pm<br><span class="text-primary-container">24/7 Emergency Service Available</span></div>
+              <div class="text-slate-300 font-semibold text-sm">Mon-Fri 7am-6pm, Sat 8am-3pm<br><span class="text-primary-container">24/7 Emergency Service Available</span></div>
             </div>
           </div>
         </div>
@@ -1174,7 +1222,7 @@
             <label class="block font-label text-xs font-bold tracking-widest uppercase text-slate-300 mb-2">Message</label>
             <textarea name="message" rows="4" placeholder="Tell us about your project, location, scope, timeline, and any questions..." class="w-full rounded-lg px-4 py-3 text-sm font-body text-white focus:border-primary-container focus:outline-none transition-colors resize-none"></textarea>
           </div>
-          <button type="submit" class="w-full primary-gradient text-white py-4 rounded-lg font-headline font-bold text-sm hover:opacity-90 active:scale-[.99] transition-all">
+          <button type="submit" class="btn-primary w-full justify-center py-4">
             Send Message
           </button>
         </form>
@@ -1189,7 +1237,7 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
       <div class="md:col-span-1">
         <div class="font-headline font-black text-xl text-on-surface mb-3"><span class="text-primary">SoCal</span> Bradley Electric</div>
-        <p class="text-secondary text-sm leading-relaxed max-w-xs">Expert commercial electrical solutions for high-complexity environments across Southern California.</p>
+        <p class="text-secondary text-sm leading-relaxed max-w-xs">Licensed electrical contractor serving residential, commercial, and biotech clients across Southern California. CA Lic #1131979.</p>
       </div>
       <div><h4 class="font-label font-bold text-xs tracking-widest uppercase text-on-surface mb-4">Services</h4><ul class="space-y-2.5 text-sm text-secondary"><li><a href="#panels" class="hover:text-primary transition-colors">Commercial Services</a></li><li><a href="#panels" class="hover:text-primary transition-colors">Biotech Expertise</a></li><li><a href="#panels" class="hover:text-primary transition-colors">Tenant Improvements</a></li><li><a href="#panels" class="hover:text-primary transition-colors">Residential</a></li></ul></div>
       <div><h4 class="font-label font-bold text-xs tracking-widest uppercase text-on-surface mb-4">Regions</h4><ul class="space-y-2.5 text-sm text-secondary"><li><a href="#contact" class="hover:text-primary transition-colors">San Diego</a></li><li><a href="#contact" class="hover:text-primary transition-colors">Orange County</a></li><li><a href="#contact" class="hover:text-primary transition-colors">Los Angeles</a></li><li><a href="#contact" class="hover:text-primary transition-colors">Riverside and San Bernadino</a></li></ul></div>
